@@ -25,12 +25,13 @@ class Mitra extends CI_Controller {
 		$data['content'] = $this->load->view('mitra/pages/data_ruang',$data2,true);
 		$this->load->view('mitra/default',$data);
 
-		echo json_encode($data2);
+		// echo json_encode($data2);
 	}
 
 	public function save_ruang(){
 
-		$new_name = 'ruang_'.time();
+		$id_mitra = $this->session->userdata('id_mitra');
+		$new_name = 'ruang_mitra'.$id_mitra.time();
 
 		$nama_file = $_FILES["foto"]['name'];
 		$ext = pathinfo($nama_file, PATHINFO_EXTENSION);
@@ -38,7 +39,7 @@ class Mitra extends CI_Controller {
 
 
 		$data['nama_ruangan'] = $_POST['nama'];
-		$data['id_mitra'] = '2';
+		$data['id_mitra'] = $id_mitra;
 		$data['kapasitas'] = $_POST['kapasitas'];
 		$data['harga'] = $_POST['harga'];
 		$data['foto']=$nama_upload;

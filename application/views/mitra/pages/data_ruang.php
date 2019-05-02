@@ -13,34 +13,28 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							<th>id</th>
+							
 							<th>Nama Tempat</th>
 							<th>Kapasitas</th>
 							<th>Harga Sewa</th>
-							<th>Gambar</th>
-							<th>Salary</th>
+							<th>Foto</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 
-					<tfoot>
-						<tr>
-							<th>Name</th>
-							<th>Position</th>
-							<th>Office</th>
-							<th>Age</th>
-							<th>Start date</th>
-							<th>Salary</th>
-						</tr>
-					</tfoot>
+					
 					<tbody>
-						<?php foreach ($ruangan as $r => $value) { ?>
+						<?php foreach ($ruangan as $r) { ?>
 							<tr>
 								<td><?php echo $r->nama_ruangan; ?></td>
-								<td><?php echo $r->nama_ruangan; ?></td>
-								<td>Edinburgh</td>
-								<td>61</td>
-								<td>2011/04/25</td>
-								<td>$320,800</td>
+								<td><?php echo $r->kapasitas; ?></td>
+								<td><?php echo $r->harga; ?></td>
+								<td><img style="height: 10%" src="<?php echo base_url() ?>foto_ruang/<?php echo $r->foto  ?>"</td>
+								<td>
+									<a href="#" class="btn btn-danger">Delete</a>
+									<a href="#" class="btn btn-warning">Edit</a>
+								</td>
+								
 							</tr>
 						<?php } ?>
 						
