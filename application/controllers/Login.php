@@ -20,7 +20,7 @@ class Login extends CI_Controller{
 		}else{
 
 			$datauser = array(
-				'user_id' => $cek_login->user_id,
+				'user_id' => $cek_login->id_user,
 				'nama' => $cek_login->nama,
 				'no_hp' => $cek_login->no_hp,
 				'email' => $cek_login->email,
@@ -34,13 +34,23 @@ class Login extends CI_Controller{
 			if ($cek_login->jenis_user == 0) {
 				redirect('frontend');
 			}elseif($cek_login->jenis_user == 1){
-				echo "Pemilik usaha";
+				$cek_mitra = $this->MMeeting->get_mitra($cek_login->id_user);
+				$datauser2 = array(
+					'id_mitra' => $cek_mitra->id_mitra,
+					'nama_mitra' => $cek_mitra->nama_mitra,
+					'alamat_mitra' => $cek_mitra->alamat,
+					'no_telp_mitra' => $cek_mitra->no_telp
+				);
+				$this->session->set_userdata($datauser2);
+
+				// echo json_encode($datauser2);
+				redirect('mitra');
 			}else{
 				echo "Super Admin";
 			}
 		}
 
-		
+
 
 
 	}
