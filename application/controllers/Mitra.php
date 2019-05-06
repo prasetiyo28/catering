@@ -28,6 +28,13 @@ class Mitra extends CI_Controller {
 		// echo json_encode($data2);
 	}
 
+	public function hapus_ruang($id){
+		$table = 'ruang';
+		$param = 'id_ruang';
+		$this->MMeeting->hapus($table,$id,$param);
+		redirect('Mitra/dataruang');
+	}
+
 	public function save_ruang(){
 
 		$id_mitra = $this->session->userdata('id_mitra');

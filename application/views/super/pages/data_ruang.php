@@ -6,7 +6,9 @@
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Data Ruangan  Meeting <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Ruangan</a></h6>
+			<h6 class="m-0 font-weight-bold text-primary">Data Ruangan  Meeting 
+				<!-- <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Ruangan</a> -->
+			</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -17,7 +19,7 @@
 							<th>Nama Tempat</th>
 							<th>Kapasitas</th>
 							<th>Harga Sewa</th>
-							<th>Foto</th>
+							<th>Mitra</th>
 							<th>keterangan</th>
 							<th>Action</th>
 						</tr>
@@ -30,7 +32,7 @@
 								<td><?php echo $r->nama_ruangan; ?></td>
 								<td><?php echo $r->keterangan; ?></td>
 								<td><?php echo $r->harga; ?></td>
-								<td><img style="height: 10%" src="<?php echo base_url() ?>foto_ruang/<?php echo $r->foto  ?>"</td>
+								<td><?php echo $r->nama_mitra; ?></td>
 								<td>
 									<?php if ($r->verif == 1) { ?>
 										<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>
@@ -39,7 +41,7 @@
 									<?php } ?>
 								</td>
 								<td>
-									<a href="#" class="btn btn-info">Detail</a>
+									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_ruang ?>" class="btn btn-info">Detail</a>
 									<a href="<?php echo base_url() ?>Mitra/hapus_ruang/<?php echo $r->id_ruang ?>" class="btn btn-danger">Delete</a>
 									<a href="#" class="btn btn-warning">Edit</a>
 								</td>
@@ -119,3 +121,38 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#DetailRuang').on('show.bs.modal', function (e) {
+			var rowid = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+            	type : 'post',
+            	url : '<?php echo base_url() ?>SuperAdmin/detail',
+            	data :  'id_ruang='+ rowid,
+            	success : function(data){
+                $('.fetched-data').html(data);//menampilkan data ke dalam modal
+            }
+        });
+        });
+	});
+</script>
+
+<div class="modal fade" id="DetailRuang" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Detail Ruang</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="fetched-data"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+			</div>
+		</div>
+	</div>
+</div>
