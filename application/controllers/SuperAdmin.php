@@ -48,6 +48,8 @@ class SuperAdmin extends CI_Controller {
 			</center>
 			</td>
 			</tr>';
+		}else{
+			$ver = '';
 		}
 
 		echo '
