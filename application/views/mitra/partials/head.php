@@ -16,4 +16,8 @@
   <link href="<?php echo base_url() ?>assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
   <link href="<?php echo base_url() ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="<?php echo base_url() ?>assets/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>

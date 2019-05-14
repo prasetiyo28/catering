@@ -75,5 +75,53 @@ class Mitra extends CI_Controller {
 			redirect($_SERVER['HTTP_REFERER']);
 
 		}
+
+
+	}
+
+	public function detail(){
+		$id = $_POST['id_ruang'];
+		// $id = 1;
+		// $table = 'ruang';
+		$data = $this->MMeeting->get_detail_ruangan($id);
+
+		if ($data->keterangan == 1) {
+			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
+		}else{
+			$ket = '<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>';
+		}
+
+		echo '
+		<table class="table table-striped">
+		<tr>
+		<td colspan="3"><img style="text-align: center;" class="img-thumbnail" src="'. base_url().'foto_ruang/'. $data->foto.'"></td>
+		</tr>
+		<tr>
+		<td>Nama Ruangan</td>
+		<td>:</td>
+		<td>'.$data->nama_ruangan.'</td>
+		</tr>
+		<td>Nama Mitra</td>
+		<td>:</td>
+		<td>'.$data->nama_mitra.'</td>
+		</tr>
+		<tr>
+		<td>Kapasitas</td>
+		<td>:</td>
+		<td>'.$data->keterangan.'</td>
+		</tr>
+		<tr>
+		<td>Harga</td>
+		<td>:</td>
+		<td>Rp.'.$data->harga.'/Jam</td>
+		</tr>
+		<tr>
+		<td>Keterangan</td>
+		<td>:</td>
+		<td>'.$ket.'</td>
+		</tr>
+		</table>';
+
+
 	}
 }

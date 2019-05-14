@@ -42,7 +42,7 @@
 								</td>
 								<td>
 									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_ruang ?>" class="btn btn-info">Detail</a>
-									<a href="<?php echo base_url() ?>Mitra/hapus_ruang/<?php echo $r->id_ruang ?>" class="btn btn-danger">Delete</a>
+									<a href="<?php echo base_url() ?>SuperAdmin/hapus_ruang/<?php echo $r->id_ruang ?>" class="btn btn-danger">Delete</a>
 									<a href="#" class="btn btn-warning">Edit</a>
 								</td>
 

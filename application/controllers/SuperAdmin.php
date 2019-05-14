@@ -95,4 +95,11 @@ class SuperAdmin extends CI_Controller {
 		redirect('SuperAdmin/dataruang');
 	}
 
+	public function hapus_ruang($id){
+		$table = 'ruang';
+		$param = 'id_ruang';
+		$this->MMeeting->hapus($table,$id,$param);
+		redirect('SuperAdmin/dataruang');
+	}
+
 }

@@ -39,7 +39,7 @@
 									<?php } ?>
 								</td>
 								<td>
-									<a href="#" class="btn btn-info">Detail</a>
+									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_ruang ?>" class="btn btn-info">Detail</a>
 									<a href="<?php echo base_url() ?>Mitra/hapus_ruang/<?php echo $r->id_ruang ?>" class="btn btn-danger">Delete</a>
 									<a href="#" class="btn btn-warning">Edit</a>
 								</td>
@@ -119,3 +119,37 @@
 			</div>
 		</div>
 	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#DetailRuang').on('show.bs.modal', function (e) {
+			var rowid = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+            	type : 'post',
+            	url : '<?php echo base_url() ?>mitra/detail',
+            	data :  'id_ruang='+ rowid,
+            	success : function(data){
+                $('.fetched-data').html(data);//menampilkan data ke dalam modal
+            }
+        });
+        });
+	});
+</script>
+
+<div class="modal fade" id="DetailRuang" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Detail Ruang</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="fetched-data"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+			</div>
+		</div>
+	</div>
+</div>
