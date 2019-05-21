@@ -79,11 +79,30 @@ class Mitra extends CI_Controller {
 
 	}
 
+	public function save_mitra(){
+		$data['id_user'] = $this->session->userdata('user_id');
+		$data['nama_mitra'] = $_POST['nama'];
+		$data['alamat'] = $_POST['alamat'];
+		$data['no_telp'] = $_POST['nomor'];
+		$data['nama_pemilik'] = $_POST['pemilik'];
+		$data['nama_bank'] = $_POST['bank'];
+		$data['nomor_rekening'] = $_POST['rekening'];
+		
+		$data['nama_akun_bank'] = $_POST['nama_rekening'];
+
+		$tabel = 'mitra';
+
+		$this->MCatering->tambah_data($tabel,$data);
+
+		$this->session->set_flashdata('alert','berhasil');
+		redirect('mitra');
+	}
+
 	public function detail(){
-		$id = $_POST['id_ruang'];
+		$id = $_POST['id_paket'];
 		// $id = 1;
 		// $table = 'ruang';
-		$data = $this->MCatering->get_detail_ruangan($id);
+		$data = $this->MCatering->get_detail_paket($id);
 
 		if ($data->keterangan == 1) {
 			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
@@ -94,7 +113,7 @@ class Mitra extends CI_Controller {
 		echo '
 		<table class="table table-striped">
 		<tr>
-		<td colspan="3"><img style="text-align: center;" class="img-thumbnail" src="'. base_url().'foto_ruang/'. $data->foto.'"></td>
+		<td colspan="3"><img style="text-align: center;" class="img-thumbnail" src="'. base_url().'foto_paket/'. $data->foto.'"></td>
 		</tr>
 		<tr>
 		<td>Nama Ruangan</td>

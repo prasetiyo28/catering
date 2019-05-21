@@ -33,7 +33,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url() ?>Mitra/dataruang">
+        <a class="nav-link" href="<?php echo base_url() ?>Mitra/datapaket">
           <i class="fas fa-fw fa-table"></i>
           <span>Paket Catering</span></a>
         </li>

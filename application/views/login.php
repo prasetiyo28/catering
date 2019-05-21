@@ -73,8 +73,8 @@
 
 
             <div class="text-center">
-                <a href="#" class="txt2 hov1">
-                    Sign Up
+                <a href="<?php echo base_url() ?>Register" class="txt2 hov1">
+                    Register
                 </a>
             </div>
         </form>

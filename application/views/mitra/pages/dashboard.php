@@ -50,7 +50,7 @@
  				</a>
  			</div>
  			<div class="modal-body">
- 				<form action='<?php echo base_url() ?>Mitra/save_ruang' method="POST" enctype="multipart/form-data">
+ 				<form action='<?php echo base_url() ?>Mitra/save_mitra' method="POST" enctype="multipart/form-data">
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Catering</label>
@@ -66,7 +66,7 @@
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">No Telp</label>
- 						<input id="inputText3" name="nama" type="text" class="form-control" placeholder="No Telp Catering...">
+ 						<input id="inputText3" name="nomor" type="text" class="form-control" placeholder="No Telp Catering...">
 
  					</div>
 
@@ -75,11 +75,7 @@
  						<input id="inputText3" name="pemilik" type="text" class="form-control" placeholder="Nama Pemilik Catering...">
 
  					</div>
- 					<div class="form-group">
- 						<label for="inputText3" class="col-form-label">Nama Catering</label>
- 						<input id="inputText3" name="nama" type="text" class="form-control" placeholder="Nama Catering...">
 
- 					</div>
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Bank</label>
@@ -98,7 +94,7 @@
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nomor Rekening</label>
- 						<input id="inputText3" name="Rekening" type="text" class="form-control" placeholder="Nomor Rekening Catering...">
+ 						<input id="inputText3" name="rekening" type="text" class="form-control" placeholder="Nomor Rekening Catering...">
 
 
  					</div>
