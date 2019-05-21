@@ -6,7 +6,7 @@
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Data Ruangan  Meeting <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Paket</a></h6>
+			<h6 class="m-0 font-weight-bold text-primary">Data Paket  Catering <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Paket</a></h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
