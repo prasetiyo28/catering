@@ -37,9 +37,9 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/dataruang">
+    <a class="nav-link" href="#">
       <i class="fas fa-fw fa-building"></i>
-      <span>Ruang Meeting</span>
+      <span>Paket Catring</span>
     </a>
   </li>
 

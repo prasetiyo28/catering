@@ -6,23 +6,24 @@ class Mitra extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('MMeeting');
+		$this->load->model('MCatering');
 
 	}
 	
 	public function index()
 	{
-		// $data['banner'] = 'true';
-		$data['content'] = $this->load->view('mitra/pages/dashboard','',true);
+		$id = $this->session->userdata('user_id');
+		$data['mitra'] = $this->MCatering->get_mitra($id);
+		$data['content'] = $this->load->view('mitra/pages/dashboard',$data,true);
 		$this->load->view('mitra/default',$data);
 	}
 
-	public function dataruang()
+	public function datapaket()
 	{
 		$id_mitra = $this->session->userdata('id_mitra');
-		$data2['kapasitas'] = $this->MMeeting->get_kapasitas();
-		$data2['ruangan'] = $this->MMeeting->get_ruangan($id_mitra);
-		$data['content'] = $this->load->view('mitra/pages/data_ruang',$data2,true);
+		// $data2['kapasitas'] = $this->MCatering->get_kapasitas();
+		$data2['paket'] = $this->MCatering->get_paket($id_mitra);
+		$data['content'] = $this->load->view('mitra/pages/data_paket',$data2,true);
 		$this->load->view('mitra/default',$data);
 
 		// echo json_encode($data2);
@@ -31,28 +32,27 @@ class Mitra extends CI_Controller {
 	public function hapus_ruang($id){
 		$table = 'ruang';
 		$param = 'id_ruang';
-		$this->MMeeting->hapus($table,$id,$param);
+		$this->MCatering->hapus($table,$id,$param);
 		redirect('Mitra/dataruang');
 	}
 
-	public function save_ruang(){
+	public function save_paket(){
 
 		$id_mitra = $this->session->userdata('id_mitra');
-		$new_name = 'ruang_mitra'.$id_mitra.time();
+		$new_name = 'paket_mitra'.$id_mitra.time();
 
 		$nama_file = $_FILES["foto"]['name'];
 		$ext = pathinfo($nama_file, PATHINFO_EXTENSION);
 		$nama_upload = $new_name.".".$ext;
 
 
-		$data['nama_ruangan'] = $_POST['nama'];
+		$data['nama_paket'] = $_POST['nama'];
 		$data['id_mitra'] = $id_mitra;
-		$data['kapasitas'] = $_POST['kapasitas'];
 		$data['harga'] = $_POST['harga'];
+		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['foto']=$nama_upload;
-		$data['detail_foto']='default.jpeg';
-
-		$config['upload_path']          = './foto_ruang/';
+		
+		$config['upload_path']          = './foto_paket/';
 		$config['allowed_types']        = 'gif|jpg|png';
 		$config['max_size']             = 5000;
 		$config['file_name']             = $new_name;
@@ -69,8 +69,8 @@ class Mitra extends CI_Controller {
 			echo json_encode($error);
 		}else{
 			$datas = array('upload_data' => $this->upload->data());
-			$tabel = 'ruang';
-			$this->MMeeting->tambah_data($tabel,$data);
+			$tabel = 'paket';
+			$this->MCatering->tambah_data($tabel,$data);
 			$this->session->set_flashdata('alert','berhasil');
 			redirect($_SERVER['HTTP_REFERER']);
 
@@ -83,7 +83,7 @@ class Mitra extends CI_Controller {
 		$id = $_POST['id_ruang'];
 		// $id = 1;
 		// $table = 'ruang';
-		$data = $this->MMeeting->get_detail_ruangan($id);
+		$data = $this->MCatering->get_detail_ruangan($id);
 
 		if ($data->keterangan == 1) {
 			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';

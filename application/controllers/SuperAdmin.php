@@ -5,7 +5,7 @@ class SuperAdmin extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('MMeeting');
+		$this->load->model('MCatering');
 
 	}
 
@@ -20,8 +20,8 @@ class SuperAdmin extends CI_Controller {
 	public function dataruang()
 	{
 
-		$data2['kapasitas'] = $this->MMeeting->get_kapasitas();
-		$data2['ruangan'] = $this->MMeeting->get_ruangan_all();
+		$data2['kapasitas'] = $this->MCatering->get_kapasitas();
+		$data2['ruangan'] = $this->MCatering->get_ruangan_all();
 		$data['content'] = $this->load->view('super/pages/data_ruang',$data2,true);
 		$this->load->view('super/default',$data);
 
@@ -32,7 +32,7 @@ class SuperAdmin extends CI_Controller {
 		$id = $_POST['id_ruang'];
 		// $id = 1;
 		// $table = 'ruang';
-		$data = $this->MMeeting->get_detail_ruangan($id);
+		$data = $this->MCatering->get_detail_ruangan($id);
 
 		if ($data->keterangan == 1) {
 			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
@@ -90,7 +90,7 @@ class SuperAdmin extends CI_Controller {
 	public function verifikasi($id){
 		$table = 'ruang';
 		$param = 'id_ruang';
-		$this->MMeeting->verifikasi($table,$id,$param);
+		$this->MCatering->verifikasi($table,$id,$param);
 
 		redirect('SuperAdmin/dataruang');
 	}
@@ -98,7 +98,7 @@ class SuperAdmin extends CI_Controller {
 	public function hapus_ruang($id){
 		$table = 'ruang';
 		$param = 'id_ruang';
-		$this->MMeeting->hapus($table,$id,$param);
+		$this->MCatering->hapus($table,$id,$param);
 		redirect('SuperAdmin/dataruang');
 	}
 

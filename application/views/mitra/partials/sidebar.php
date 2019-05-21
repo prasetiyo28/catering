@@ -28,14 +28,14 @@
     <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Booking Masuk</span></a>
+        <span>Pesanan Masuk</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url() ?>Mitra/dataruang">
           <i class="fas fa-fw fa-table"></i>
-          <span>Ruang Meeting</span></a>
+          <span>Paket Catering</span></a>
         </li>
 
         <!-- Divider -->
