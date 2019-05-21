@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 02, 2019 at 07:06 PM
+-- Generation Time: May 21, 2019 at 08:42 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `meeting`
+-- Database: `catering`
 --
 
 -- --------------------------------------------------------
@@ -67,33 +67,31 @@ CREATE TABLE `mitra` (
 --
 
 INSERT INTO `mitra` (`id_mitra`, `id_user`, `nama_mitra`, `alamat`, `no_telp`, `nama_pemilik`, `nama_bank`, `nomor_rekening`, `nama_akun_bank`, `verif`, `deleted`) VALUES
-(1, 2, 'Cafe Cho Cho', 'Jalan Mataram No.28 Pesurungan Lor, Kota Tegal', '085643281778', 'Bayu Adi Prasetiyo', 'BRI (Bank Rakyat Indonesia)', '225252897878', 'Bayu Adi Prasetiyo', 1, 0);
+(1, 2, 'Catering Harber', 'Jalan Mataram No.28 Pesurungan Lor, Kota Tegal', '085643281778', 'Bayu Adi Prasetiyo', 'BRI (Bank Rakyat Indonesia)', '225252897878', 'Bayu Adi Prasetiyo', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruang`
+-- Table structure for table `paket`
 --
 
-CREATE TABLE `ruang` (
-  `id_ruang` int(11) NOT NULL,
+CREATE TABLE `paket` (
+  `id_paket` int(11) NOT NULL,
   `id_mitra` int(11) NOT NULL,
-  `nama_ruangan` varchar(50) NOT NULL,
-  `kapasitas` int(1) NOT NULL,
+  `nama_paket` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `harga` int(11) NOT NULL,
   `foto` varchar(255) NOT NULL,
-  `detail_foto` varchar(255) DEFAULT NULL,
-  `verif` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `harga` int(10) NOT NULL
+  `verif` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ruang`
+-- Dumping data for table `paket`
 --
 
-INSERT INTO `ruang` (`id_ruang`, `id_mitra`, `nama_ruangan`, `kapasitas`, `foto`, `detail_foto`, `verif`, `deleted`, `harga`) VALUES
-(1, 1, 'Ruang Meeting 1 Cafe Cho Cho ', 1, 'ruang_1556813387.png', 'default.jpeg', 0, 0, 150000),
-(2, 1, 'Ruang Meeting 2 Cafe Cho Cho ', 1, 'ruang_mitra11556816431.png', 'default.jpeg', 0, 0, 120000);
+INSERT INTO `paket` (`id_paket`, `id_mitra`, `nama_paket`, `deskripsi`, `harga`, `foto`, `verif`, `deleted`) VALUES
+(1, 1, 'Berkah Ramdahan', '1 ayam\r\n1 aqua\r\n1 takjil', 120000, 'paket_mitra11558420438.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -118,8 +116,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama`, `email`, `no_hp`, `password`, `jenis_user`, `verifikasi`, `deleted`) VALUES
 (1, 'admin', 'bayu28.bap@gmail.com', '085643281795', 'c811416626e3640491ed6a09dd9f57e9', 0, 1, 0),
-(2, 'Bayu Adi Prasetiyo', 'bayu-28@live.com', '085643281795', '92360c2c392c85b23f38c188996f8d74', 1, 1, 0),
-(3, 'meeting', 'meeting@meeting.com', '123123123123', '827ccb0eea8a706c4c34a16891f84e7b', 0, 1, 0);
+(2, 'Dina Wahyni', 'dina@catering.com', '085643281795', 'e274648aed611371cf5c30a30bbe1d65', 1, 1, 0),
+(3, 'catering', 'admin@catering.com', '123123123123', '21232f297a57a5a743894a0e4a801fc3', 2, 1, 0),
+(5, 'Viola Catering', 'viola@gmail.com', '085643281112', 'c31ac812dbb4b1a273b3c2d3bd465690', 1, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -138,10 +137,10 @@ ALTER TABLE `mitra`
   ADD PRIMARY KEY (`id_mitra`);
 
 --
--- Indexes for table `ruang`
+-- Indexes for table `paket`
 --
-ALTER TABLE `ruang`
-  ADD PRIMARY KEY (`id_ruang`);
+ALTER TABLE `paket`
+  ADD PRIMARY KEY (`id_paket`);
 
 --
 -- Indexes for table `user`
@@ -166,16 +165,16 @@ ALTER TABLE `mitra`
   MODIFY `id_mitra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `ruang`
+-- AUTO_INCREMENT for table `paket`
 --
-ALTER TABLE `ruang`
-  MODIFY `id_ruang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `paket`
+  MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
