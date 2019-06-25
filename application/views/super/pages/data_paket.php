@@ -8,12 +8,7 @@
 
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Data Paket  Catering 
-				<?php if ($mitra == 'null') { ?>
-					<a href="#" data-toggle="modal" data-target="#please" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Paket</a>
-				<?php }else{ ?>
-					<a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Paket</a>
-				<? } ?>
-
+				
 				
 
 			</h6>
@@ -23,7 +18,7 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							
+							<th>#</th>
 							<th>Nama Paket</th>
 							<th>Deskripsi</th>
 							<th>Harga</th>
@@ -35,8 +30,9 @@
 
 					
 					<tbody>
-						<?php foreach ($paket as $r) { ?>
+						<?php $no=1; foreach ($paket as $r) { ?>
 							<tr>
+								<td><?php echo $no++; ?></td>
 								<td><?php echo $r->nama_paket; ?></td>
 								<td><?php echo $r->deskripsi; ?></td>
 								<td><?php echo $r->harga; ?></td>
@@ -49,8 +45,8 @@
 									<?php } ?>
 								</td>
 								<td>
-									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>
-									<a href="<?php echo base_url() ?>Mitra/hapus_paket/<?php echo $r->id_paket ?>" class="btn btn-danger">Delete</a>
+									<a href='#DetailPaket' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>
+									<a href="<?php echo base_url() ?>superadmin/hapus_paket/<?php echo $r->id_paket ?>" class="btn btn-danger">Delete</a>
 									<a href="#" class="btn btn-warning">Edit</a>
 								</td>
 
@@ -128,12 +124,12 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#DetailRuang').on('show.bs.modal', function (e) {
+		$('#DetailPaket').on('show.bs.modal', function (e) {
 			var rowid = $(e.relatedTarget).data('id');
             //menggunakan fungsi ajax untuk pengambilan data
             $.ajax({
             	type : 'post',
-            	url : '<?php echo base_url() ?>mitra/detail',
+            	url : '<?php echo base_url() ?>superadmin/detail/',
             	data :  'id_paket='+ rowid,
             	success : function(data){
                 $('.fetched-data').html(data);//menampilkan data ke dalam modal
@@ -143,7 +139,7 @@
 	});
 </script>
 
-<div class="modal fade" id="DetailRuang" role="dialog">
+<div class="modal fade" id="DetailPaket" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

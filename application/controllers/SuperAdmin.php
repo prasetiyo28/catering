@@ -17,6 +17,35 @@ class SuperAdmin extends CI_Controller {
 
 	}
 
+	public function datamitra()
+	{
+		// $data['banner'] = 'true';
+		$data2['mitra'] = $this->MCatering->getMitraAll();
+		$data['content'] = $this->load->view('super/pages/data_mitra',$data2,true);
+		$this->load->view('super/default',$data);
+
+	}
+
+	public function datapaket()
+	{
+		// $data['banner'] = 'true';
+		$data2['paket'] = $this->MCatering->getPaketAll();
+		$data['content'] = $this->load->view('super/pages/data_paket',$data2,true);
+		$this->load->view('super/default',$data);
+
+	}
+
+	public function datauser()
+	{
+		// $data['banner'] = 'true';
+		$data2['user'] = $this->MCatering->getUserAll();
+		$data['content'] = $this->load->view('super/pages/data_user',$data2,true);
+		$this->load->view('super/default',$data);
+
+	}
+
+
+
 	public function dataruang()
 	{
 
@@ -29,12 +58,12 @@ class SuperAdmin extends CI_Controller {
 	}
 
 	public function detail(){
-		$id = $_POST['id_ruang'];
+		$id = $_POST['id_paket'];
 		// $id = 1;
 		// $table = 'ruang';
-		$data = $this->MCatering->get_detail_ruangan($id);
+		$data = $this->MCatering->get_detail_paket($id);
 
-		if ($data->keterangan == 1) {
+		if ($data->verif == 1) {
 			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
 		}else{
 			$ket = '<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>';
@@ -44,7 +73,7 @@ class SuperAdmin extends CI_Controller {
 			$ver =  '<tr>
 			<td colspan="3">
 			<center>
-			<a href="'.base_url().'SuperAdmin/verifikasi/'.$data->id_ruang.'" class="btn btn-success">V e r i f i k a s i </a>
+			<a href="'.base_url().'SuperAdmin/verifikasi/'.$data->id_paket.'" class="btn btn-success">V e r i f i k a s i </a>
 			</center>
 			</td>
 			</tr>';
@@ -55,26 +84,26 @@ class SuperAdmin extends CI_Controller {
 		echo '
 		<table class="table table-striped">
 		<tr>
-		<td colspan="3"><img style="text-align: center;" class="img-thumbnail" src="'. base_url().'foto_ruang/'. $data->foto.'"></td>
+		<td colspan="3"><img style="text-align: center;" class="img-thumbnail" src="'. base_url().'foto_paket/'. $data->foto.'"></td>
 		</tr>
 		<tr>
-		<td>Nama Ruangan</td>
+		<td>Nama Paket</td>
 		<td>:</td>
-		<td>'.$data->nama_ruangan.'</td>
+		<td>'.$data->nama_paket.'</td>
 		</tr>
 		<td>Nama Mitra</td>
 		<td>:</td>
 		<td>'.$data->nama_mitra.'</td>
 		</tr>
 		<tr>
-		<td>Kapasitas</td>
-		<td>:</td>
-		<td>'.$data->keterangan.'</td>
-		</tr>
-		<tr>
 		<td>Harga</td>
 		<td>:</td>
-		<td>Rp.'.$data->harga.'/Jam</td>
+		<td>Rp.'.$data->harga.'</td>
+		</tr>
+		<tr>
+		<td>Deskripsi</td>
+		<td>:</td>
+		<td>'.$data->deskripsi.'/Jam</td>
 		</tr>
 		<tr>
 		<td>Keterangan</td>
@@ -88,18 +117,26 @@ class SuperAdmin extends CI_Controller {
 	}
 
 	public function verifikasi($id){
-		$table = 'ruang';
-		$param = 'id_ruang';
+		$table = 'paket';
+		$param = 'id_paket';
 		$this->MCatering->verifikasi($table,$id,$param);
 
-		redirect('SuperAdmin/dataruang');
+		redirect('SuperAdmin/datapaket');
 	}
 
-	public function hapus_ruang($id){
-		$table = 'ruang';
-		$param = 'id_ruang';
+	public function verif_mitra($id){
+		$table = 'mitra';
+		$param = 'id_mitra';
+		$this->MCatering->verifikasi($table,$id,$param);
+
+		redirect('SuperAdmin/datamitra');
+	}
+
+	public function hapus_paket($id){
+		$table = 'paket';
+		$param = 'id_paket';
 		$this->MCatering->hapus($table,$id,$param);
-		redirect('SuperAdmin/dataruang');
+		redirect('SuperAdmin/datapaket');
 	}
 
 }

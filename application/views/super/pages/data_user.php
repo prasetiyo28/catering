@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800">Data Ruangan Meeting</h1>
+	<h1 class="h3 mb-2 text-gray-800">Data Mitra</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
@@ -16,35 +16,31 @@
 					<thead>
 						<tr>
 							
-							<th>Nama Tempat</th>
-							<th>Kapasitas</th>
-							<th>Harga Sewa</th>
-							<th>Mitra</th>
-							<th>keterangan</th>
-							<th>Action</th>
+							<th>#</th>
+							<th>Nama</th>
+							<th>Email</th>
+							<th>No HP</th>
+							<th>Verif</th>
+							<!-- <th>Action</th> -->
 						</tr>
 					</thead>
 
 					
 					<tbody>
-						<?php foreach ($ruangan as $r) { ?>
+						<?php $no = 1; foreach ($user as $r) { ?>
 							<tr>
-								<td><?php echo $r->nama_ruangan; ?></td>
-								<td><?php echo $r->keterangan; ?></td>
-								<td><?php echo $r->harga; ?></td>
-								<td><?php echo $r->nama_mitra; ?></td>
+								<td><?php echo $no++; ?></td>
+								<td><?php echo $r->nama; ?></td>
+								<td><?php echo $r->email; ?></td>
+								<td><?php echo $r->no_hp; ?></td>
 								<td>
-									<?php if ($r->verif == 1) { ?>
+									<?php if ($r->verifikasi == 1) { ?>
 										<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>
 									<?php }else{ ?>
 										<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>
 									<?php } ?>
 								</td>
-								<td>
-									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_ruang ?>" class="btn btn-info">Detail</a>
-									<a href="<?php echo base_url() ?>SuperAdmin/hapus_ruang/<?php echo $r->id_ruang ?>" class="btn btn-danger">Delete</a>
-									<a href="#" class="btn btn-warning">Edit</a>
-								</td>
+
 
 							</tr>
 						<?php } ?>

@@ -21,6 +21,7 @@ class Mitra extends CI_Controller {
 	public function datapaket()
 	{
 		$id_mitra = $this->session->userdata('id_mitra');
+		$data2['mitra'] = $this->MCatering->get_mitra($id_mitra);
 		// $data2['kapasitas'] = $this->MCatering->get_kapasitas();
 		$data2['paket'] = $this->MCatering->get_paket($id_mitra);
 		$data['content'] = $this->load->view('mitra/pages/data_paket',$data2,true);
@@ -29,12 +30,14 @@ class Mitra extends CI_Controller {
 		// echo json_encode($data2);
 	}
 
-	public function hapus_ruang($id){
-		$table = 'ruang';
-		$param = 'id_ruang';
+	public function hapus_paket($id){
+		$table = 'paket';
+		$param = 'id_paket';
 		$this->MCatering->hapus($table,$id,$param);
-		redirect('Mitra/dataruang');
+		redirect('Mitra/datapaket');
 	}
+
+	
 
 	public function save_paket(){
 
@@ -104,7 +107,7 @@ class Mitra extends CI_Controller {
 		// $table = 'ruang';
 		$data = $this->MCatering->get_detail_paket($id);
 
-		if ($data->keterangan == 1) {
+		if ($data->verif == 1) {
 			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
 		}else{
 			$ket = '<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>';
@@ -116,9 +119,9 @@ class Mitra extends CI_Controller {
 		<td colspan="3"><img style="text-align: center;" class="img-thumbnail" src="'. base_url().'foto_paket/'. $data->foto.'"></td>
 		</tr>
 		<tr>
-		<td>Nama Ruangan</td>
+		<td>Nama Paket</td>
 		<td>:</td>
-		<td>'.$data->nama_ruangan.'</td>
+		<td>'.$data->nama_paket.'</td>
 		</tr>
 		<td>Nama Mitra</td>
 		<td>:</td>
@@ -127,7 +130,7 @@ class Mitra extends CI_Controller {
 		<tr>
 		<td>Kapasitas</td>
 		<td>:</td>
-		<td>'.$data->keterangan.'</td>
+		<td>'.$data->deskripsi.'</td>
 		</tr>
 		<tr>
 		<td>Harga</td>

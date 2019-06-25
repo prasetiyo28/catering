@@ -33,12 +33,29 @@ class MCatering extends CI_Model{
 		return $query->result();
 	}
 
-	function get_detail_ruangan($id){
-		$this->db->select('ruang.*, kapasitas.keterangan as keterangan, mitra.nama_mitra');
-		$this->db->from('ruang');
-		$this->db->join('kapasitas','ruang.kapasitas = kapasitas.id_kapasitas');
-		$this->db->join('mitra','ruang.id_mitra = mitra.id_mitra');
-		$this->db->where('ruang.id_ruang',$id);
+
+
+	function getPaketAll(){
+
+		$this->db->where('paket.deleted','0');
+		// $this->db->where('ruang.verif','0');
+		$query = $this->db->get('paket');
+		return $query->result();
+	}
+
+	function getUserAll(){
+
+		$this->db->where('user.jenis_user !=','2');
+		// $this->db->where('ruang.verif','0');
+		$query = $this->db->get('user');
+		return $query->result();
+	}
+
+	function get_detail_paket($id){
+		$this->db->select('paket.*, mitra.nama_mitra');
+		$this->db->from('paket');
+		$this->db->join('mitra','paket.id_mitra = mitra.id_mitra');
+		$this->db->where('paket.id_paket',$id);
 		// $this->db->where('ruang.deleted','0');
 		// $this->db->where('ruang.verif','0');
 		$query = $this->db->get();
@@ -67,6 +84,11 @@ class MCatering extends CI_Model{
 		$this->db->where('id_user',$id);
 		$query = $this->db->get('mitra');
 		return $query->row();
+	}
+
+	function getMitraAll(){
+		$query = $this->db->get('mitra');
+		return $query->result();
 	}
 
 	function hapus($table,$id,$param){

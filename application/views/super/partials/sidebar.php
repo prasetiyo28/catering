@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url() ?>superadmin/">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
@@ -13,7 +13,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="<?php echo base_url() ?>superadmin/">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span>
     </a>
@@ -27,7 +27,7 @@
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="<?php echo base_url() ?>superadmin/datamitra">
       <i class="fas fa-fw fa-handshake"></i>
       <span>Data Mitra</span>
     </a>
@@ -37,9 +37,9 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="<?php echo base_url() ?>superadmin/datapaket">
       <i class="fas fa-fw fa-building"></i>
-      <span>Paket Catring</span>
+      <span>Paket Catering</span>
     </a>
   </li>
 
