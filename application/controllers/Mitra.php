@@ -30,7 +30,9 @@ class Mitra extends CI_Controller {
 		// echo json_encode($data2);
 	}
 
-	public function hapus_paket($id){
+	public function hapus_paket(){
+
+		$id = $this->input->post('id');
 		$table = 'paket';
 		$param = 'id_paket';
 		$this->MCatering->hapus($table,$id,$param);

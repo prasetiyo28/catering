@@ -46,7 +46,11 @@
 								</td>
 								<td>
 									<a href='#DetailPaket' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>
-									<a href="<?php echo base_url() ?>superadmin/hapus_paket/<?php echo $r->id_paket ?>" class="btn btn-danger">Delete</a>
+
+									<a href="javascript:;"
+									data-id="<?php echo $r->id_paket ?>"
+									data-toggle="modal" data-target="#hapus-data" class="btn btn-danger" data-toggle="modal" data-target="#hapus-data">Delete</a>
+
 									<a href="#" class="btn btn-warning">Edit</a>
 								</td>
 
@@ -173,3 +177,48 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- Modal Ubah -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="hapus-data" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Delete Data</h4>
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				
+			</div>
+			<form class="form-horizontal" action="<?php echo base_url('superadmin/hapus_paket')?>" method="post" enctype="multipart/form-data" role="form">
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="hidden" id="id" name="id">
+					</div>
+
+					<p>Yakin Hapus Data ?</p>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-danger" type="submit"> Delete&nbsp;</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- END Modal Ubah -->
+
+<script>
+	$(document).ready(function() {
+        // Untuk sunting
+        $('#hapus-data').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            
+        });
+    });
+</script>
