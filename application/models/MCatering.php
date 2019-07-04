@@ -24,6 +24,17 @@ class MCatering extends CI_Model{
 		return $query->result();
 	}
 
+	function get_pesanan_id($id){
+		$this->db->where('id_mitra',$id);
+		$query = $this->db->get('pesan');
+		return $query->result();
+	}
+
+	function get_pesanan_all(){
+		$query = $this->db->get('pesan');
+		return $query->result();
+	}
+
 	function get_paket($id){
 
 		$this->db->where('paket.id_mitra',$id);

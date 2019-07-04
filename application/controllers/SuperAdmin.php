@@ -25,7 +25,14 @@ class SuperAdmin extends CI_Controller {
 		$this->load->view('super/default',$data);
 
 	}
+	public function datapesanan()
+	{
+		// $data['banner'] = 'true';
+		$data2['pesanan'] = $this->MCatering->get_pesanan_all();
+		$data['content'] = $this->load->view('super/pages/data_pesanan',$data2,true);
+		$this->load->view('super/default',$data);
 
+	}
 	public function datapaket()
 	{
 		// $data['banner'] = 'true';

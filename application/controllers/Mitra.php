@@ -18,6 +18,16 @@ class Mitra extends CI_Controller {
 		$this->load->view('mitra/default',$data);
 	}
 
+	public function pesananmasuk()
+	{
+
+		$id_mitra = $this->session->userdata('id_mitra');
+		$data2['mitra'] = $this->MCatering->get_mitra($id_mitra);
+		$data2['pesanan'] = $this->MCatering->get_pesanan_id($id_mitra);
+		$data['content'] = $this->load->view('mitra/pages/data_pesanan',$data2,true);
+		$this->load->view('mitra/default',$data);	
+	}
+
 	public function datapaket()
 	{
 		$id_mitra = $this->session->userdata('id_mitra');
