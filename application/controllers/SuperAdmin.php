@@ -70,23 +70,7 @@ class SuperAdmin extends CI_Controller {
 		// $table = 'ruang';
 		$data = $this->MCatering->get_detail_paket($id);
 
-		if ($data->verif == 1) {
-			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
-		}else{
-			$ket = '<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>';
-		}
-
-		if ($data->verif == 0) {
-			$ver =  '<tr>
-			<td colspan="3">
-			<center>
-			<a href="'.base_url().'SuperAdmin/verifikasi/'.$data->id_paket.'" class="btn btn-success">V e r i f i k a s i </a>
-			</center>
-			</td>
-			</tr>';
-		}else{
-			$ver = '';
-		}
+		
 
 		echo '
 		<table class="table table-striped">
@@ -113,11 +97,7 @@ class SuperAdmin extends CI_Controller {
 		<td>'.$data->deskripsi.'/Jam</td>
 		</tr>
 		<tr>
-		<td>Keterangan</td>
-		<td>:</td>
-		<td>'.$ket.'</td>
-		</tr>
-		'.$ver.'
+		
 		</table>';
 
 

@@ -119,12 +119,7 @@ class Mitra extends CI_Controller {
 		// $table = 'ruang';
 		$data = $this->MCatering->get_detail_paket($id);
 
-		if ($data->verif == 1) {
-			$ket =  '<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>';
-		}else{
-			$ket = '<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>';
-		}
-
+		
 		echo '
 		<table class="table table-striped">
 		<tr>
@@ -150,9 +145,7 @@ class Mitra extends CI_Controller {
 		<td>Rp.'.$data->harga.'/Jam</td>
 		</tr>
 		<tr>
-		<td>Keterangan</td>
-		<td>:</td>
-		<td>'.$ket.'</td>
+		
 		</tr>
 		</table>';
 

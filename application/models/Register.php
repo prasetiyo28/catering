@@ -39,14 +39,13 @@ class Register extends CI_Controller{
 		$ci = get_instance();
 		$ci->load->library('email');
 		$config['protocol'] = "smtp";
-		$config['smtp_host'] = "ssl://smtp.gmail.com";
-		$config['smtp_port'] = "465";
+		$config['smtp_host'] = "smtp.gmail.com";
+		$config['smtp_port'] = "587";
 		$config['smtp_user'] = "dinawahyuni440@gmail.com";
 		$config['smtp_pass'] = "Dina@12345";
 		$config['charset'] = "utf-8";
 		$config['mailtype'] = "html";
 		$config['newline'] = "\r\n";
-		$config['crlf'] = "\r\n";
 		$ci->email->initialize($config);
 		$ci->email->from('verif@catering.com', 'Verif Catering');
 		$list = array($email);

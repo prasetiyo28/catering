@@ -35,7 +35,7 @@
             <form action="<?php echo base_url() ?>register/register" method="post" class="login100-form validate-form">
 
 
-               <?php if ($this->session->flashdata('alert') == 'berhasil') { ?>
+             <?php if ($this->session->flashdata('alert') == 'berhasil') { ?>
                 <div class="alert alert-success alert-dismissable">
                     <i class="fa fa-check"></i>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -60,12 +60,12 @@
             </div>
 
             <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                <input class="input100" type="email" name="email" placeholder="username or email">
+                <input class="input100" type="email" name="email" placeholder="username or email" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input m-b-20" data-validate="Masukan Nomor HP">
-                <input class="input100" type="telp" name="nomor" placeholder="Masukan Nomor HP">
+                <input class="input100" type="telp" name="nomor" placeholder="Masukan Nomor HP" required>
                 <span class="focus-input100"></span>
             </div>
 

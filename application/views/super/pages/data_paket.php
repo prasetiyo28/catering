@@ -23,7 +23,7 @@
 							<th>Deskripsi</th>
 							<th>Harga</th>
 							<th>Foto</th>
-							<th>keterangan</th>
+							<!-- <th>keterangan</th> -->
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -37,13 +37,13 @@
 								<td><?php echo $r->deskripsi; ?></td>
 								<td><?php echo $r->harga; ?></td>
 								<td><img style="height: 10%" src="<?php echo base_url() ?>foto_paket/<?php echo $r->foto  ?>"></td>
-								<td>
+								<!-- <td>
 									<?php if ($r->verif == 1) { ?>
 										<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>
 									<?php }else{ ?>
 										<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>
 									<?php } ?>
-								</td>
+								</td> -->
 								<td>
 									<a href='#DetailPaket' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>
 

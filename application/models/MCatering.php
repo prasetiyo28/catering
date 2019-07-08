@@ -16,6 +16,15 @@ class MCatering extends CI_Model{
 		return $query->row();
 	}
 
+	function cek_id($email){
+		$this->db->select('user.*');
+		$this->db->from('user');
+		$this->db->where('email',$email);
+		$query = $this->db->get();
+		
+		return $query->row();
+	}
+
 
 
 	function get_kapasitas(){
@@ -110,6 +119,13 @@ class MCatering extends CI_Model{
 
 	function verifikasi($table,$id,$param){
 		$this->db->set('verif','1');
+		$this->db->where($param,$id);
+		$this->db->update($table);
+	}
+
+
+	function verif($table,$id,$param){
+		$this->db->set('verifikasi','1');
 		$this->db->where($param,$id);
 		$this->db->update($table);
 	}

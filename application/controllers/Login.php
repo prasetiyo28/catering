@@ -41,13 +41,15 @@ class Login extends CI_Controller{
 				redirect('frontend');
 			}elseif($cek_login->jenis_user == 1){
 				$cek_mitra = $this->MCatering->get_mitra($cek_login->id_user);
-				$datauser2 = array(
-					'id_mitra' => $cek_mitra->id_mitra,
-					'nama_mitra' => $cek_mitra->nama_mitra,
-					'alamat_mitra' => $cek_mitra->alamat,
-					'no_telp_mitra' => $cek_mitra->no_telp
-				);
-				$this->session->set_userdata($datauser2);
+				if (!empty($cek_mitra)) {
+					$datauser2 = array(
+						'id_mitra' => $cek_mitra->id_mitra,
+						'nama_mitra' => $cek_mitra->nama_mitra,
+						'alamat_mitra' => $cek_mitra->alamat,
+						'no_telp_mitra' => $cek_mitra->no_telp
+					);
+					$this->session->set_userdata($datauser2);
+				}
 
 				// echo json_encode($datauser2);
 				redirect('mitra');
@@ -60,6 +62,8 @@ class Login extends CI_Controller{
 
 
 	}
+
+	
 
 	public function logout(){
 		$this->session->sess_destroy();
