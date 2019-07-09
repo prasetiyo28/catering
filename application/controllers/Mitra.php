@@ -21,9 +21,9 @@ class Mitra extends CI_Controller {
 	public function pesananmasuk()
 	{
 
-		$id_mitra = $this->session->userdata('id_mitra');
+		$id_mitra = $this->session->userdata('user_id');
 		$data2['mitra'] = $this->MCatering->get_mitra($id_mitra);
-		$data2['pesanan'] = $this->MCatering->get_pesanan_id($id_mitra);
+		$data2['pesanan'] = $this->MCatering->get_pesanan_id($data2['mitra']->id_mitra);
 		$data['content'] = $this->load->view('mitra/pages/data_pesanan',$data2,true);
 		$this->load->view('mitra/default',$data);	
 	}
@@ -31,11 +31,14 @@ class Mitra extends CI_Controller {
 	public function histori()
 	{
 
-		$id_mitra = $this->session->userdata('id_mitra');
+		$id_mitra = $this->session->userdata('user_id');
 		$data2['mitra'] = $this->MCatering->get_mitra($id_mitra);
-		$data2['pesanan'] = $this->MCatering->get_histori_id($id_mitra);
+		$data2['pesanan'] = $this->MCatering->get_histori_id($data2['mitra']->id_mitra);
 		$data['content'] = $this->load->view('mitra/pages/data_histori',$data2,true);
 		$this->load->view('mitra/default',$data);	
+
+		// echo json_encode($id_mitra);
+
 	}
 
 	public function datapaket()
@@ -51,16 +54,16 @@ class Mitra extends CI_Controller {
 	}
 
 	public function verifikasi($id){
-		$table == 'pesan';
-		$param == 'id_order';
+		$tabel = 'pesan';
+		$param = 'id_order';
 		$this->MCatering->verif($table,$id,$param);
 		redirect('mitra/pesananmasuk');
 	}
 
 	public function selesai($id){
-		$table == 'pesan';
-		$param == 'id_order';
-		$this->MCatering->selesai($table,$id,$param);
+		$tabel = 'pesan';
+		$param = 'id_order';
+		$this->MCatering->selesai($tabel,$id,$param);
 		redirect('mitra/pesananmasuk');
 	}
 

@@ -35,13 +35,15 @@ class MCatering extends CI_Model{
 
 	function get_pesanan_id($id){
 		$this->db->select('users_table.name as pemesan,pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
+		$this->db->from('pesan');
 		$this->db->join('paket','paket.id_paket=pesan.id_paket');
 		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
 		$this->db->join('users_table','pesan.id=users_table.id');
+		$this->db->group_by('pesan.id_order');
 		$this->db->where('pesan.id_mitra',$id);
 		$this->db->where('pesan.verifikasi','1');
 		$this->db->or_where('pesan.verifikasi','0');
-		$query = $this->db->get('pesan');
+		$query = $this->db->get();
 		return $query->result();
 	}
 
@@ -50,6 +52,7 @@ class MCatering extends CI_Model{
 		$this->db->join('paket','paket.id_paket=pesan.id_paket');
 		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
 		$this->db->join('users_table','pesan.id=users_table.id');
+		$this->db->group_by('pesan.id_order');
 		$this->db->where('pesan.id_mitra',$id);
 		$this->db->where('pesan.verifikasi','2');
 		$query = $this->db->get('pesan');

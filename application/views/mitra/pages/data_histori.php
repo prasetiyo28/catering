@@ -1,13 +1,13 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800">Data Pesanan Masuk</h1>
+	<h1 class="h3 mb-2 text-gray-800">Data Riwayat Transaksi</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Data Pesanan Masuk 
+			<h6 class="m-0 font-weight-bold text-primary">Data Riwayat Transaksi 
 
 
 				
@@ -39,7 +39,7 @@
 								<td><?php echo $r->nama_paket; ?></td>
 								<td><?php echo $r->nama_mitra; ?></td>
 								<td><?php echo $r->jml_pesan; ?></td>
-								<td><?php echo $r->total_harga; ?></td>
+								<td><?php echo ($r->jml_pesan * $r->harga); ?></td>
 								<td><?php echo $r->tgl_pesan; ?></td>
 								
 								<!-- <td>

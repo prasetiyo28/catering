@@ -26,24 +26,34 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
+      <a class="nav-link" href="<?php echo base_url() ?>Mitra/datapaket">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Paket Catering</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="<?php echo base_url() ?>mitra/pesananmasuk">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Pesanan Masuk</span></a>
-      </li>
+        <span>Pesanan Masuk</span>
+      </a>
+    </li>
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url() ?>Mitra/datapaket">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Paket Catering</span></a>
-        </li>
+    <!-- Nav Item - Tables -->
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
 
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-          <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+    <li class="nav-item">
+      <a class="nav-link" href="<?php echo base_url() ?>Mitra/histori">
+        <i class="fas fa-fw fa-history"></i>
+        <span>Histori</span>
+      </a>
+    </li>
 
-      </ul>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+  </ul>
