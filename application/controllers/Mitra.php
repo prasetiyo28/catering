@@ -28,6 +28,16 @@ class Mitra extends CI_Controller {
 		$this->load->view('mitra/default',$data);	
 	}
 
+	public function histori()
+	{
+
+		$id_mitra = $this->session->userdata('id_mitra');
+		$data2['mitra'] = $this->MCatering->get_mitra($id_mitra);
+		$data2['pesanan'] = $this->MCatering->get_histori_id($id_mitra);
+		$data['content'] = $this->load->view('mitra/pages/data_histori',$data2,true);
+		$this->load->view('mitra/default',$data);	
+	}
+
 	public function datapaket()
 	{
 		$id_mitra = $this->session->userdata('id_mitra');
@@ -38,6 +48,20 @@ class Mitra extends CI_Controller {
 		$this->load->view('mitra/default',$data);
 
 		// echo json_encode($data2);
+	}
+
+	public function verifikasi($id){
+		$table == 'pesan';
+		$param == 'id_order';
+		$this->MCatering->verif($table,$id,$param);
+		redirect('mitra/pesananmasuk');
+	}
+
+	public function selesai($id){
+		$table == 'pesan';
+		$param == 'id_order';
+		$this->MCatering->selesai($table,$id,$param);
+		redirect('mitra/pesananmasuk');
 	}
 
 	public function hapus_paket(){
@@ -108,6 +132,16 @@ class Mitra extends CI_Controller {
 		$tabel = 'mitra';
 
 		$this->MCatering->tambah_data($tabel,$data);
+		$cek_mitra = $this->MCatering->get_mitra($this->session->userdata('user_id'));
+		if (!empty($cek_mitra)) {
+			$datauser2 = array(
+				'id_mitra' => $cek_mitra->id_mitra,
+				'nama_mitra' => $cek_mitra->nama_mitra,
+				'alamat_mitra' => $cek_mitra->alamat,
+				'no_telp_mitra' => $cek_mitra->no_telp
+			);
+			$this->session->set_userdata($datauser2);
+		}
 
 		$this->session->set_flashdata('alert','berhasil');
 		redirect('mitra');

@@ -34,12 +34,32 @@ class MCatering extends CI_Model{
 	}
 
 	function get_pesanan_id($id){
-		$this->db->where('id_mitra',$id);
+		$this->db->select('users_table.name as pemesan,pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
+		$this->db->join('paket','paket.id_paket=pesan.id_paket');
+		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
+		$this->db->join('users_table','pesan.id=users_table.id');
+		$this->db->where('pesan.id_mitra',$id);
+		$this->db->where('pesan.verifikasi','1');
+		$this->db->or_where('pesan.verifikasi','0');
+		$query = $this->db->get('pesan');
+		return $query->result();
+	}
+
+	function get_histori_id($id){
+		$this->db->select('users_table.name as pemesan,pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
+		$this->db->join('paket','paket.id_paket=pesan.id_paket');
+		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
+		$this->db->join('users_table','pesan.id=users_table.id');
+		$this->db->where('pesan.id_mitra',$id);
+		$this->db->where('pesan.verifikasi','2');
 		$query = $this->db->get('pesan');
 		return $query->result();
 	}
 
 	function get_pesanan_all(){
+		$this->db->select('pesan.*,mitra.nama_mitra,paket.nama_paket');
+		$this->db->join('paket','paket.id_paket=pesan.id_paket');
+		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
 		$query = $this->db->get('pesan');
 		return $query->result();
 	}
@@ -126,6 +146,12 @@ class MCatering extends CI_Model{
 
 	function verif($table,$id,$param){
 		$this->db->set('verifikasi','1');
+		$this->db->where($param,$id);
+		$this->db->update($table);
+	}
+
+	function selesai($table,$id,$param){
+		$this->db->set('verifikasi','2');
 		$this->db->where($param,$id);
 		$this->db->update($table);
 	}

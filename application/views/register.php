@@ -54,8 +54,8 @@
             <span class="login100-form-title p-b-37">
                 Register
             </span>
-            <div class="wrap-input100 validate-input m-b-20" data-validate="Masukan Nama Catering">
-                <input class="input100" type="text" name="nama" placeholder="nama catering">
+            <div class="wrap-input100 validate-input m-b-20" data-validate="Masukan Nama Anda">
+                <input class="input100" type="text" name="nama" placeholder="nama catering" required>
                 <span class="focus-input100"></span>
             </div>
 
@@ -70,7 +70,7 @@
             </div>
 
             <div class="wrap-input100 validate-input m-b-25" data-validate = "Masukan password">
-                <input class="input100" type="password" name="password" placeholder="password">
+                <input class="input100" type="password" name="password" placeholder="password" required>
                 <span class="focus-input100"></span>
             </div>
 

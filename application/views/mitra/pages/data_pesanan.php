@@ -22,8 +22,12 @@
 							
 							<th>No</th>
 							<th>id_paket</th>
+							<th>Pemesan</th>
+							<th>Alamat</th>
 							<th>Jumlah</th>
+							<th>Harga</th>
 							<th>Total</th>
+							<th>Struk</th>
 							<th>Action</th>
 							
 						</tr>
@@ -34,10 +38,27 @@
 						<?php $no=1; foreach ($pesanan as $r) { ?>
 							<tr>
 								<td><?php echo $no++; ?></td>
-								<td><?php echo $r->id_paket; ?></td>
+								<td><?php echo $r->nama_paket; ?></td>
+								<td><?php echo $r->pemesan; ?></td>
+								<td><?php echo $r->alamat_pesan; ?></td>
 								<td><?php echo $r->jml_pesan; ?></td>
-								<td><?php echo $r->total_harga; ?></td>
-								<td><button class="btn btn-info">Terima</button></td>
+								<td><?php echo $r->harga; ?></td>
+								<td><?php echo ($r->jml_pesan * $r->harga); ?></td>
+								<td>
+									<?php if ($r->bukti_bayar != '') { ?>
+										<a class="btn btn-info" target="_blank" href="<?php echo base_url() ?>katon/struk/<?php echo $r->bukti_bayar  ?> ">Lihat Bukti
+										</a>
+									<?php }else{ ?>
+										<a href="javascript.void(0)">Belum Bayar</a>
+									<?php } ?>
+								</td>
+								<td>
+									<?php if ($r->verifikasi=='0') {?>
+										<a href="<?php echo base_url() ?>mitra/verifikasi/<?php echo $r->id_order ?>"><button class="btn btn-warning">Terima Pembayaran</button></a>
+									<?php }elseif($r->verifikasi=='1'){ ?>
+										<a href="<?php echo base_url() ?>mitra/selesai/<?php echo $r->id_order ?>"><button class="btn btn-success">Pembayaran diterima</button></a>
+									<?php }?>
+
 								<!-- <td>
 									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>
 
