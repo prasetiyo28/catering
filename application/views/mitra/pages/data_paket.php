@@ -16,6 +16,8 @@
 
 				
 
+				
+
 			</h6>
 		</div>
 		<div class="card-body">
@@ -55,7 +57,14 @@
 									data-id="<?php echo $r->id_paket ?>"
 									data-toggle="modal" data-target="#hapus-data" class="btn btn-danger" data-toggle="modal" data-target="#hapus-data">Delete</a>
 
-									<a href="#" class="btn btn-warning">Edit</a>
+									<a 
+									href="javascript:;"
+									data-id="<?php echo $r->id_paket ?>"
+									data-nama="<?php echo $r->nama_paket ?>"
+									data-deskripsi="<?php echo $r->deskripsi ?>"
+									data-harga="<?php echo $r->harga ?>"
+									data-toggle="modal" data-target="#edit-data">
+									<button  data-toggle="modal" data-target="#ubah-data" class="btn btn-warning">Edit</button>
 								</td>
 
 							</tr>
@@ -227,3 +236,69 @@
         });
     });
 </script>
+
+<!-- Modal Ubah -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Ubah Data</h4>
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				
+			</div>
+			<form class="form-horizontal" action="<?php echo base_url('mitra/update_paket')?>" method="post" enctype="multipart/form-data" role="form">
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="col-lg-4 col-sm-4 control-label">Nama Paket</label>
+
+						<div class="col-lg-12">
+							<input type="hidden" id="id" name="id">
+							<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Cabang">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-lg-4 col-sm-4 control-label">Deskripsi</label>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="No. Telp">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-4 col-sm-4 control-label">Harga</label>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" id="harga" name="harga" placeholder="Alamat">
+						</div>
+					</div>
+					
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- END Modal Ubah -->
+
+<script>
+	$(document).ready(function() {
+        // Untuk sunting
+        $('#edit-data').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#nama').attr("value",div.data('nama'));
+            modal.find('#deskripsi').attr("value",div.data('deskripsi'));
+            modal.find('#harga').attr("value",div.data('harga'));
+
+        });
+    });
+</script>
+

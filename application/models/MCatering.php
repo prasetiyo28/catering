@@ -60,9 +60,10 @@ class MCatering extends CI_Model{
 	}
 
 	function get_pesanan_all(){
-		$this->db->select('pesan.*,mitra.nama_mitra,paket.nama_paket');
+		$this->db->select('pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
 		$this->db->join('paket','paket.id_paket=pesan.id_paket');
 		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
+		$this->db->group_by('pesan.id_order');
 		$query = $this->db->get('pesan');
 		return $query->result();
 	}
@@ -157,5 +158,11 @@ class MCatering extends CI_Model{
 		$this->db->set('verifikasi','2');
 		$this->db->where($param,$id);
 		$this->db->update($table);
+	}
+
+	function update_data($table,$id,$param,$data){
+
+		$this->db->where($param,$id);
+		$this->db->update($table,$data);
 	}
 }

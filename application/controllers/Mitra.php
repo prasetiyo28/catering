@@ -53,6 +53,16 @@ class Mitra extends CI_Controller {
 		// echo json_encode($data2);
 	}
 
+	public function update_paket(){
+		$id = $this->input->post('id');
+		$data['nama_paket'] = $this->input->post('nama');
+		$data['harga'] = $this->input->post('harga');
+		$data['deskripsi'] = $this->input->post('deskripsi');
+
+		$this->MCatering->update_data('paket',$id,'id_paket',$data);
+		redirect('mitra/datapaket');
+	}
+
 	public function verifikasi($id){
 		$tabel = 'pesan';
 		$param = 'id_order';

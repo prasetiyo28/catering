@@ -23,17 +23,26 @@
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
-         hideValidate(this);
-         $(this).parent().removeClass('true-validate');
-     });
+           hideValidate(this);
+           $(this).parent().removeClass('true-validate');
+       });
     });
 
     function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email' || $(input).attr('type') == 'telp' || $(input).attr('name') == 'telp') {
             if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
                 return false;
+            }else if($(input).val().trim().match(phoneno == null)) {
+                return false;
             }
+
+            
         }
+
+
         else {
             if($(input).val().trim() == ''){
                 return false;
@@ -49,8 +58,8 @@
         $(thisAlert).append('<span class="btn-hide-validate">&#xf135;</span>')
         $('.btn-hide-validate').each(function(){
             $(this).on('click',function(){
-             hideValidate(this);
-         });
+               hideValidate(this);
+           });
         });
     }
 

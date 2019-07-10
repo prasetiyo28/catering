@@ -10,7 +10,8 @@
 			<h6 class="m-0 font-weight-bold text-primary">Data Pesanan Masuk 
 
 
-				
+				<a href="#" id="print" class="btn btn-info"> <i class="fa fa-print"></i>print</a>
+
 
 			</h6>
 		</div>
@@ -39,7 +40,7 @@
 								<td><?php echo $r->nama_paket; ?></td>
 								<td><?php echo $r->nama_mitra; ?></td>
 								<td><?php echo $r->jml_pesan; ?></td>
-								<td><?php echo $r->total_harga; ?></td>
+								<td><?php echo ($r->jml_pesan * $r->harga); ?></td>
 								<td><?php echo $r->tgl_pesan; ?></td>
 								
 								<!-- <td>
@@ -220,4 +221,19 @@
             
         });
     });
+</script>
+
+<script type="text/javascript">
+	function printData()
+	{
+		var divToPrint=document.getElementById("dataTable");
+		newWin= window.open("");
+		newWin.document.write(divToPrint.outerHTML);
+		newWin.print();
+		newWin.close();
+	}
+
+	$('#print').on('click',function(){
+		printData();
+	})
 </script>

@@ -55,7 +55,7 @@
                 Register
             </span>
             <div class="wrap-input100 validate-input m-b-20" data-validate="Masukan Nama Anda">
-                <input class="input100" type="text" name="nama" placeholder="nama catering" required>
+                <input class="input100" type="text" name="nama" placeholder="nama Anda" required>
                 <span class="focus-input100"></span>
             </div>
 
@@ -65,7 +65,7 @@
             </div>
 
             <div class="wrap-input100 validate-input m-b-20" data-validate="Masukan Nomor HP">
-                <input class="input100" type="telp" name="nomor" placeholder="Masukan Nomor HP" required>
+                <input class="input100" type="tel" pattern="^\d{11}$" name="nomor" placeholder="Masukan Nomor HP" required>
                 <span class="focus-input100"></span>
             </div>
 
