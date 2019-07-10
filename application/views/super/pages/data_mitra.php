@@ -24,7 +24,7 @@
 							<th>Nama Bank</th>
 							<th>Nomor Rekening</th>
 							<th>Nama Akun Bank</th>
-							<th>Action</th>
+							<!-- <th>Action</th> -->
 						</tr>
 					</thead>
 
@@ -40,25 +40,25 @@
 								<td><?php echo $r->nama_bank; ?></td>
 								<td><?php echo $r->nomor_rekening; ?></td>
 								<td><?php echo $r->nama_akun_bank; ?></td>
-								<td>
+								<!-- <td>
 									<?php if ($r->verif == 1) { ?>
 										<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>
 									<?php }else{ ?>
 										<a href="<?php echo base_url() ?>/superadmin/verif_mitra/<?php echo $r->id_mitra ?>" class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</a>
 									<?php } ?>
 								</td>
+							-->
+
+						</tr>
+					<?php } ?>
 
 
-							</tr>
-						<?php } ?>
 
-
-
-					</tbody>
-				</table>
-			</div>
+				</tbody>
+			</table>
 		</div>
 	</div>
+</div>
 
 </div>
 <!-- /.container-fluid -->
