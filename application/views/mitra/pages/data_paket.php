@@ -8,7 +8,7 @@
 
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Data Paket  Catering 
-				<?php if ($mitra == '') { ?>
+				<?php if ($this->session->userdata('id_mitra') == '') { ?>
 					<a href="#" data-toggle="modal" data-target="#please" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Paket</a>
 				<?php }else{ ?>
 					<a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Paket</a>

@@ -10,7 +10,18 @@
 
  	<!-- Content Row -->
  	<div class="row">
+ 		<?php if ($this->session->flashdata('alert') == 'berhasil') { ?>
 
+
+
+ 			<div class="alert alert-success alert-dismissable">
+ 				<i class="fa fa-check"></i>
+ 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+ 				<b>Berhasil !</b> Data Anda Berhasil Disimpan 
+ 			</div>
+
+ 		<?php }?>
+ 		
  		<!-- Content Column -->
  		<div class="col-lg-12 mb-4">
 
