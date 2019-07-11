@@ -51,12 +51,19 @@
  			</div>
  			<div class="modal-body">
  				<form action='<?php echo base_url() ?>Mitra/save_mitra' method="POST" enctype="multipart/form-data">
+ 					<div class="form-group">
+ 						<label for="inputText3" class="col-form-label">Logo Catering</label>
+ 						<input required id="inputText3" name="foto" type="file" class="form-control" placeholder="Logo Catering...">
+
+ 					</div>
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Catering</label>
  						<input id="inputText3" name="nama" type="text" class="form-control" placeholder="Nama Catering...">
 
  					</div>
+
+
 
 
  					<div class="form-group">
@@ -80,7 +87,7 @@
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Bank</label>
 
- 						<select name="bank" class="form-control">
+ 						<select name="bank" class="form-control" onchange='CheckBank(this.value);'>
  							<option value="">-Pilih Bank-</option>
  							<option>BCA (Bank Central Asia)</option>
  							<option>BRI (Bank Rakyat Indonesia)</option>
@@ -88,7 +95,21 @@
  							<option>CIMB</option>
  							<option>MAYBANK</option>
  							<option>UOB</option>
+ 							<option value="others">Lainnya...</option>
  						</select>
+
+ 						<input id="bank" name="bank2" type="text" class="form-control" placeholder="Nama Bank" style="display: none;">
+
+ 						<script type="text/javascript">
+ 							function CheckBank(val){
+ 								var element=document.getElementById('bank');
+ 								if(val=='others')
+ 									element.style.display='block';
+ 								else  
+ 									element.style.display='none';
+ 							}
+
+ 						</script>
 
  					</div>
 
@@ -109,7 +130,7 @@
 
 
 
- 					
+
 
 
 					<!-- <div class="form-group">

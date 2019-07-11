@@ -94,7 +94,7 @@ class SuperAdmin extends CI_Controller {
 		<tr>
 		<td>Deskripsi</td>
 		<td>:</td>
-		<td>'.$data->deskripsi.'/Jam</td>
+		<td>'.$data->deskripsi.'</td>
 		</tr>
 		<tr>
 		

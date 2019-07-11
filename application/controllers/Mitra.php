@@ -133,17 +133,42 @@ class Mitra extends CI_Controller {
 
 	public function save_mitra(){
 		$data['id_user'] = $this->session->userdata('user_id');
+
+
+		$id_mitra = $this->session->userdata('id_mitra');
+		$new_name = 'foto_mitra'.$id_mitra.time();
+
+		$nama_file = $_FILES["foto"]['name'];
+		$ext = pathinfo($nama_file, PATHINFO_EXTENSION);
+		$nama_upload = $new_name.".".$ext;
+
+
 		$data['nama_mitra'] = $_POST['nama'];
 		$data['alamat'] = $_POST['alamat'];
 		$data['no_telp'] = $_POST['nomor'];
 		$data['nama_pemilik'] = $_POST['pemilik'];
-		$data['nama_bank'] = $_POST['bank'];
+		if ($_POST['bank']=='others') {
+			$data['nama_bank'] = $_POST['bank2'];
+		}else{
+
+			$data['nama_bank'] = $_POST['bank'];
+		}
 		$data['nomor_rekening'] = $_POST['rekening'];
 		
 		$data['nama_akun_bank'] = $_POST['nama_rekening'];
+		$data['image']=$nama_upload;
+		
+		$config['upload_path']          = './katon/img/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 5000;
+		$config['file_name']             = $new_name;
+
+
 
 		$tabel = 'mitra';
+		$this->load->library('upload', $config);
 
+		$this->upload->do_upload('foto');
 		$this->MCatering->tambah_data($tabel,$data);
 		$cek_mitra = $this->MCatering->get_mitra($this->session->userdata('user_id'));
 		if (!empty($cek_mitra)) {
@@ -157,7 +182,15 @@ class Mitra extends CI_Controller {
 		}
 
 		$this->session->set_flashdata('alert','berhasil');
-		redirect('mitra');
+		redirect($_SERVER['HTTP_REFERER']);
+
+
+		
+
+
+		
+
+		
 	}
 
 	public function detail(){
@@ -189,7 +222,7 @@ class Mitra extends CI_Controller {
 		<tr>
 		<td>Harga</td>
 		<td>:</td>
-		<td>Rp.'.$data->harga.'/Jam</td>
+		<td>Rp.'.$data->harga.'</td>
 		</tr>
 		<tr>
 		
