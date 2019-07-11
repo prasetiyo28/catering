@@ -32,28 +32,51 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url() ?>mitra/pesananmasuk">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Pesanan Masuk</span>
-      </a>
-    </li>
+      <?php if ($this->session->userdata('id_mitra') == '') { ?>
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#please">
 
-    <!-- Nav Item - Tables -->
+        <?php }else{ ?>
+          <a  class="nav-link" href="<?php echo base_url() ?>mitra/pesananmasuk">
+          <?php } ?>
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Pesanan Masuk</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Tables -->
 
 
-    <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url() ?>Mitra/histori">
-        <i class="fas fa-fw fa-history"></i>
-        <span>Histori</span>
-      </a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>Mitra/histori">
+          <i class="fas fa-fw fa-history"></i>
+          <span>Histori</span>
+        </a>
+      </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+
+    <!-- Modal -->
+    <div class="modal fade" id="please" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          </div>
+          <div class="modal-body">
+            <p>Silahkan lengkapi data catering di halaman <a href="<?php echo base_url() ?>/mitra">dashboard</a>.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </ul>
