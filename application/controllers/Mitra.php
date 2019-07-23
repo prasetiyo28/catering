@@ -6,12 +6,27 @@ class Mitra extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		$this->load->library(array('googlemaps'));
 		$this->load->model('MCatering');
 
 	}
 	
 	public function index()
 	{
+		$config['map_div_id'] = "map-add";
+		$config['map_height'] = "250px";
+		$config['center'] = '-6.880029,109.124192';
+		$config['zoom'] = '12';
+		$config['map_height'] = '300px;';
+		$this->googlemaps->initialize($config);
+
+		$marker = array();
+		$marker['position'] = '-6.880029,109.124192';
+		$marker['draggable'] = true;
+		$marker['ondragend'] = 'setMapToForm(event.latLng.lat(), event.latLng.lng());';
+		$this->googlemaps->add_marker($marker);
+		$data['map'] = $this->googlemaps->create_map();
+
 		$id = $this->session->userdata('user_id');
 		$data['mitra'] = $this->MCatering->get_mitra($id);
 		$data['content'] = $this->load->view('mitra/pages/dashboard',$data,true);
@@ -66,7 +81,13 @@ class Mitra extends CI_Controller {
 	public function verifikasi($id){
 		$tabel = 'pesan';
 		$param = 'id_order';
-		$this->MCatering->verif($table,$id,$param);
+		$this->MCatering->verif($tabel,$id,$param);
+		redirect('mitra/pesananmasuk');
+	}
+	public function tolak($id){
+		$tabel = 'pesan';
+		$param = 'id_order';
+		$this->MCatering->tolak($tabel,$id,$param);
 		redirect('mitra/pesananmasuk');
 	}
 
@@ -144,6 +165,8 @@ class Mitra extends CI_Controller {
 
 
 		$data['nama_mitra'] = $_POST['nama'];
+		$data['longitude'] = $_POST['longitude'];
+		$data['latitude'] = $_POST['latitude'];
 		$data['alamat'] = $_POST['alamat'];
 		$data['no_telp'] = $_POST['nomor'];
 		$data['nama_pemilik'] = $_POST['pemilik'];

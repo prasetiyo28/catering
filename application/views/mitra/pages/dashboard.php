@@ -74,6 +74,28 @@
 
  					</div>
 
+ 					<div class="form-group">
+ 						<label class="col-form-label">Koordinat</label><br>
+ 						<div class="col-sm-6">
+ 							<div class="input-group">
+ 								<input id="input-calendar" type="text" name="latitude" class="form-control"  placeholder="latitude">
+ 								
+ 							</div>
+
+ 						</div>
+ 						<div class="col-sm-6">
+ 							<div class="input-group">
+ 								<input id="input-calendar" type="text" name="longitude" class="form-control" placeholder="longitude">
+ 								
+ 							</div>
+
+ 						</div>
+ 						<div class="col-sm-12">
+
+ 							<?php echo $map['html'] ?>
+ 						</div>
+ 					</div>
+
 
 
 
@@ -93,6 +115,8 @@
  						<input id="inputText3" name="pemilik" type="text" class="form-control" placeholder="Nama Pemilik Catering...">
 
  					</div>
+
+
 
 
  					<div class="form-group">
@@ -163,3 +187,11 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	function setMapToForm(latitude, longitude) 
+	{
+		$('input[name="latitude"]').val(latitude);
+		$('input[name="longitude"]').val(longitude);
+	}
+</script>

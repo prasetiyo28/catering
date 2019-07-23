@@ -14,19 +14,30 @@ class Register extends CI_Controller{
 	}
 
 	public function register(){
+		
+
+
 		$data['nama'] = $_POST['nama'];
 		$data['no_hp'] = $_POST['nomor'];
 		$data['email'] = $_POST['email'];
 		$data['jenis_user'] = '1';
 		$data['password'] = md5($_POST['password']);
 
-		$tabel = 'user';
+		$cek_email = $this->MCatering->cek_id($data['emaail']);
 
-		$this->MCatering->tambah_data($tabel,$data);
-		$regis = $this->MCatering->cek_id($data['email']);
-		$this->send($regis->id_user,$data['email']);
-		$this->session->set_flashdata('alert','berhasil');
-		redirect('register');
+		if (!empty($cek_email)) {
+			$tabel = 'user';
+
+			$this->MCatering->tambah_data($tabel,$data);
+			$regis = $this->MCatering->cek_id($data['email']);
+			$this->send($regis->id_user,$data['email']);
+			$this->session->set_flashdata('alert','berhasil');
+			redirect('register');
+		}else{
+			$this->session->set_flashdata('alert','gagal');
+			redirect('register');
+		}
+
 
 
 	}

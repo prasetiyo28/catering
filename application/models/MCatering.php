@@ -154,6 +154,12 @@ class MCatering extends CI_Model{
 		$this->db->update($table);
 	}
 
+	function tolak($table,$id,$param){
+		$this->db->set('verifikasi','3');
+		$this->db->where($param,$id);
+		$this->db->update($table);
+	}
+
 	function selesai($table,$id,$param){
 		$this->db->set('verifikasi','2');
 		$this->db->where($param,$id);

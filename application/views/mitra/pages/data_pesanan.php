@@ -54,7 +54,8 @@
 								</td>
 								<td>
 									<?php if ($r->verifikasi=='0') {?>
-										<a href="<?php echo base_url() ?>mitra/verifikasi/<?php echo $r->id_order ?>"><button class="btn btn-warning">Terima Pembayaran</button></a>
+										<a href="<?php echo base_url() ?>mitra/verifikasi/<?php echo $r->id_order ?>"><button class="btn btn-warning btn-sm">Terima Pembayaran</button></a>
+										<a href="<?php echo base_url() ?>mitra/tolak/<?php echo $r->id_order ?>"><button class="btn btn-danger btn-sm">Tolak</button></a>
 									<?php }elseif($r->verifikasi=='1'){ ?>
 										<a href="<?php echo base_url() ?>mitra/selesai/<?php echo $r->id_order ?>"><button class="btn btn-success">Pembayaran diterima</button></a>
 									<?php }?>
