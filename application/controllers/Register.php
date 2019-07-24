@@ -23,9 +23,9 @@ class Register extends CI_Controller{
 		$data['jenis_user'] = '1';
 		$data['password'] = md5($_POST['password']);
 
-		$cek_email = $this->MCatering->cek_id($data['emaail']);
-
-		if (!empty($cek_email)) {
+		$cek_email = $this->MCatering->cek_id($data['email']);
+		echo json_encode($cek_email);
+		if (empty($cek_email)) {
 			$tabel = 'user';
 
 			$this->MCatering->tambah_data($tabel,$data);
@@ -33,10 +33,14 @@ class Register extends CI_Controller{
 			$this->send($regis->id_user,$data['email']);
 			$this->session->set_flashdata('alert','berhasil');
 			redirect('register');
+
 		}else{
 			$this->session->set_flashdata('alert','gagal');
 			redirect('register');
 		}
+
+
+
 
 
 

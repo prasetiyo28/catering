@@ -51,7 +51,7 @@ class Login extends CI_Controller{
 					$this->session->set_userdata($datauser2);
 				}
 
-				// echo json_encode($datauser2);
+				// echo json_encode($cek_mitra);
 				redirect('mitra');
 			}else{
 				redirect('SuperAdmin');
