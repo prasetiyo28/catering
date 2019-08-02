@@ -70,7 +70,7 @@
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Catering</label>
- 						<input id="inputText3" name="nama" type="text" class="form-control" placeholder="Nama Catering...">
+ 						<input required id="inputText3" name="nama" type="text" class="form-control" placeholder="Nama Catering...">
 
  					</div>
 
@@ -78,14 +78,14 @@
  						<label class="col-form-label">Koordinat</label><br>
  						<div class="col-sm-6">
  							<div class="input-group">
- 								<input id="input-calendar" type="text" name="latitude" class="form-control"  placeholder="latitude">
+ 								<input required id="input-calendar" type="text" name="latitude" class="form-control"  placeholder="latitude">
  								
  							</div>
 
  						</div>
  						<div class="col-sm-6">
  							<div class="input-group">
- 								<input id="input-calendar" type="text" name="longitude" class="form-control" placeholder="longitude">
+ 								<input required id="input-calendar" type="text" name="longitude" class="form-control" placeholder="longitude">
  								
  							</div>
 
@@ -101,18 +101,18 @@
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Alamat</label>
- 						<textarea class="form-control" name="alamat" placeholder="Alamat Catering..."></textarea>
+ 						<textarea required class="form-control" name="alamat" placeholder="Alamat Catering..."></textarea>
  					</div>
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">No Telp</label>
- 						<input id="inputText3" name="nomor" type="text" class="form-control" placeholder="No Telp Catering...">
+ 						<input required id="inputText3" name="nomor" type="text" class="form-control" placeholder="No Telp Catering...">
 
  					</div>
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Pemilik Catering</label>
- 						<input id="inputText3" name="pemilik" type="text" class="form-control" placeholder="Nama Pemilik Catering...">
+ 						<input required id="inputText3" name="pemilik" type="text" class="form-control" placeholder="Nama Pemilik Catering...">
 
  					</div>
 
@@ -122,7 +122,7 @@
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Bank</label>
 
- 						<select name="bank" class="form-control" onchange='CheckBank(this.value);'>
+ 						<select required name="bank" class="form-control" onchange='CheckBank(this.value);'>
  							<option value="">-Pilih Bank-</option>
  							<option>BCA (Bank Central Asia)</option>
  							<option>BRI (Bank Rakyat Indonesia)</option>
@@ -133,7 +133,7 @@
  							<option value="others">Lainnya...</option>
  						</select>
 
- 						<input id="bank" name="bank2" type="text" class="form-control" placeholder="Nama Bank" style="display: none;">
+ 						<input required id="bank" name="bank2" type="text" class="form-control" placeholder="Nama Bank" style="display: none;">
 
  						<script type="text/javascript">
  							function CheckBank(val){
@@ -150,14 +150,14 @@
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nomor Rekening</label>
- 						<input id="inputText3" name="rekening" type="text" class="form-control" placeholder="Nomor Rekening Catering...">
+ 						<input required id="inputText3" name="rekening" type="text" class="form-control" placeholder="Nomor Rekening Catering...">
 
 
  					</div>
 
  					<div class="form-group">
  						<label for="inputText3" class="col-form-label">Nama Account Bank</label>
- 						<input id="inputText3" name="nama_rekening" type="text" class="form-control" placeholder="Nama Account Bank...">
+ 						<input required id="inputText3" name="nama_rekening" type="text" class="form-control" placeholder="Nama Account Bank...">
 
  					</div>
 

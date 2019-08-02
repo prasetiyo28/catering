@@ -16,14 +16,14 @@
 		die(json_encode($response));
 	}
 	
-	$query = mysqli_query($con, "SELECT * FROM users_table WHERE email='$email' AND password='$password'");
+	$query = mysqli_query($con, "SELECT * FROM users_table WHERE email='$email' AND password='$password' AND verifikasi=1");
 	
 	$row = mysqli_fetch_array($query);
 	
 	if (!empty($row)){
 		$response = new usr();
 		$response->success = 1;
-		$response->message = "Selamat datang ";
+		$response->message = "Selamat datang ".$row['name'];
 		$response->id = $row['id'];
 		$response->email = $row['email'];
 		$response->name = $row['name'];
@@ -34,7 +34,7 @@
 	} else { 
 		$response = new usr();
 		$response->success = 0;
-		$response->message = "Username atau password salah";
+		$response->message = "Periksa Kembali Email atau Password Anda";
 		die(json_encode($response));
 	}
 	

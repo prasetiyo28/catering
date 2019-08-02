@@ -33,6 +33,19 @@ class SuperAdmin extends CI_Controller {
 		$this->load->view('super/default',$data);
 
 	}
+
+	public function hapus_pelanggan($id)
+	{
+		$this->MCatering->hapus_pelanggan($id);
+		redirect('SuperAdmin/datapelanggan');
+	}
+
+	public function datapelanggan()
+	{
+		$data2['pelanggan'] = $this->MCatering->get_pelanggan_all();
+		$data['content'] = $this->load->view('super/pages/data_pelanggan',$data2,true);
+		$this->load->view('super/default',$data);
+	}
 	public function datapaket()
 	{
 		// $data['banner'] = 'true';

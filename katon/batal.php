@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$id_order = $_POST['id_order'];
 
-	$sql = "UPDATE pesan SET verifikasi = '3' WHERE id_order = '$id_order';";
+	$sql = "UPDATE pesan SET verifikasi = '2' WHERE id_order = '$id_order';";
 
 	require_once('koneksi.php');
 

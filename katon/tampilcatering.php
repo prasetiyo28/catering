@@ -2,7 +2,7 @@
 
 require_once 'koneksi.php';
 
-$sql = "SELECT * FROM mitra " ;
+$sql = "SELECT * FROM mitra WHERE verif = 1" ;
 
 $result = array();
 $r = mysqli_query($con,$sql);
@@ -18,7 +18,9 @@ while ($row = mysqli_fetch_array($r)) {
 		"nama_bank" => $row['nama_bank'],
 		"nomor_rekening" => $row['nomor_rekening'],
 		"nama_akun_bank" => $row['nama_akun_bank'],
-		"image" => $row['image']
+		"image" => $row['image'],
+		"latitude" => $row['latitude'],
+		"longitude" => $row['longitude']
 		// "id_paket" => $row['id_paket'],
 		// "nama_paket" => $row['nama_paket'],
 		// "deskripsi" => $row['deskripsi'],

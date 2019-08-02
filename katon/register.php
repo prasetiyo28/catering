@@ -14,7 +14,7 @@
 	if ((empty($name))) {
 		$response = new usr();
 		$response->success = 0;
-		$response->message = "Kolom username tidak boleh kosong";
+		$response->message = "Kolom name tidak boleh kosong";
 		die(json_encode($response));
 	} else if ((empty($email))) {
 		$response = new usr();
@@ -44,26 +44,69 @@
 				$query = mysqli_query($con, "INSERT INTO users_table (id, name, email, no_hp, password) VALUES(0,'".$name."', '".$email."', '".$no_hp."','".$password."')");
 
 				if ($query){
-					$response = new usr();
-					$response->success = 1;
-					$response->message = "Register berhasil, silahkan login.";
-					die(json_encode($response));
+					// $response = new usr();
+					// $response->success = 1;
+					// $response->message = "Register berhasil, silahkan verifikasi.";
 
-				} else {
-					$response = new usr();
-					$response->success = 0;
-					$response->message = "Username sudah ada";
-					die(json_encode($response));
+					require 'PHPMailer/PHPMailerAutoload.php';
+					$mail = new PHPMailer;
+
+// Konfigurasi SMTP
+				$mail->isSMTP();
+				$mail->Host = 'smtp.gmail.com';
+				$mail->SMTPAuth = true;
+				$mail->Username = 'onlinecatering25@gmail.com';
+				$mail->Password = '12345sasa';
+				$mail->SMTPSecure = 'ssl';
+				$mail->Port = 465;
+
+				$mail->setFrom('varif@onlinecatering.com', 'CateringOnline');
+				$mail->addReplyTo('verif@onlinecatering.com', 'CateringOnline');
+
+// Menambahkan penerima
+				$mail->addAddress($email);
+
+// Subjek email
+				$mail->Subject = 'Verifikasi Akun Online Catering';
+
+// Mengatur format email ke HTML
+				$mail->isHTML(true);
+
+// Konten/isi email
+				$mailContent = "<h1>Verifikasi Akun</h1>
+				<p>Untuk verifikasi akun silhkan klik link di bawah</p><br/>
+				<a href='http://192.168.100.8/catering/katon/verifikasi.php?email=".$email."'>verifikasi</a>";
+
+
+				$mail->Body = $mailContent;
+
+// Kirim email
+				if(!$mail->send()){
+					echo 'Pesan tidak dapat dikirim.';
+					echo 'Mailer Error: ' . $mail->ErrorInfo;
+				}else{
+					echo 'Register Berhasil, Silahkan Verifikasi';
 				}
-			} else {
-				$response = new usr();
-				$response->success = 0;
-				$response->message = "Username sudah ada";
-				die(json_encode($response));
-			}
-		}
-	}
 
-	mysqli_close($con);
+				// echo json_encode($response);
+
+			} else {
+				// $response = new usr();
+				// $response->success = 0;
+				echo "Register Gagal";
+				// die(json_encode($response));
+			}
+		} else {
+			// $response = new usr();
+			// $response->success = 0;
+			echo "email sudah ada";
+			// die(json_encode($response));
+		}
+		
+	}
+}
+
+
+mysqli_close($con);
 
 ?>	

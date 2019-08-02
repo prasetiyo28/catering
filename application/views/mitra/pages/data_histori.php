@@ -8,10 +8,16 @@
 
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Data Riwayat Transaksi 
+				<form action="<?php echo base_url() ?>/Mitra/cetak_laporan" method="post">
+					<input type="date" class="form-control" name="mulai">
+					<input type="date" class="form-control" name="sampai">
+					<button  type="submit" class="btn btn-info"> <i class="fa fa-print"></i>print</button>
+				</form>
 
-				<a href="#" id="print" class="btn btn-info"> <i class="fa fa-print"></i>print</a>
-				
-				
+				<br>
+
+
+
 
 			</h6>
 		</div>
@@ -20,19 +26,19 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							
+
 							<th>No</th>
 							<th>Nama Paket</th>
 							<th>Mitra</th>
 							<th>Jumlah</th>
 							<th>Total</th>
 							<th>Tanggal</th>
-							
-							
+
+
 						</tr>
 					</thead>
 
-					
+
 					<tbody>
 						<?php $no=1; foreach ($pesanan as $r) { ?>
 							<tr>
@@ -42,7 +48,7 @@
 								<td><?php echo $r->jml_pesan; ?></td>
 								<td><?php echo ($r->jml_pesan * $r->harga); ?></td>
 								<td><?php echo $r->tgl_pesan; ?></td>
-								
+
 								<!-- <td>
 									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>
 

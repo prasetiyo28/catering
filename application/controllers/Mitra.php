@@ -107,6 +107,16 @@ class Mitra extends CI_Controller {
 		redirect('Mitra/datapaket');
 	}
 
+	public function cetak_laporan(){
+		$mulai = $this->input->post('mulai');
+		$sampai = $this->input->post('sampai');
+		$id_mitra = $this->session->userdata('user_id');
+		$data2['mitra'] = $this->MCatering->get_mitra($id_mitra);
+		$data2['pesanan'] = $this->MCatering->get_histori_id_laporan($data2['mitra']->id_mitra,$mulai,$sampai);
+		$this->load->view('mitra/pages/laporan_histori',$data2);
+		
+	}
+
 	
 
 	public function save_paket(){

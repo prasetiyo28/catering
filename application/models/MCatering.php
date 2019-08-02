@@ -59,12 +59,33 @@ class MCatering extends CI_Model{
 		return $query->result();
 	}
 
+
+	function get_histori_id_laporan($id,$mulai,$sampai){
+		$this->db->select('users_table.name as pemesan,pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
+		$this->db->join('paket','paket.id_paket=pesan.id_paket');
+		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
+		$this->db->join('users_table','pesan.id=users_table.id');
+		$this->db->group_by('pesan.id_order');
+		$this->db->where('pesan.id_mitra',$id);
+		$this->db->where('pesan.verifikasi','2');
+		$this->db->where('date(pesan.tgl_transaksi) <= ',$sampai);
+		$this->db->where('date(pesan.tgl_transaksi) >= ',$mulai);
+		$query = $this->db->get('pesan');
+		return $query->result();
+	}
+
 	function get_pesanan_all(){
 		$this->db->select('pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
 		$this->db->join('paket','paket.id_paket=pesan.id_paket');
 		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
 		$this->db->group_by('pesan.id_order');
 		$query = $this->db->get('pesan');
+		return $query->result();
+	}
+
+	function get_pelanggan_all(){
+		$this->db->where('verifikasi','1');
+		$query = $this->db->get('users_table');
 		return $query->result();
 	}
 
@@ -139,6 +160,13 @@ class MCatering extends CI_Model{
 		$this->db->set('deleted','1');
 		$this->db->where($param,$id);
 		$this->db->update($table);
+	}
+
+
+	function hapus_pelanggan($id){
+		$this->db->set('verifikasi','0');
+		$this->db->where('id',$id);
+		$this->db->update('users_table');
 	}
 
 	function verifikasi($table,$id,$param){

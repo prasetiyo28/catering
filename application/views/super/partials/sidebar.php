@@ -13,7 +13,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="<?php echo base_url() ?>superadmin/">
+    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span>
     </a>
@@ -27,7 +27,7 @@
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url() ?>superadmin/datamitra">
+    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/datamitra">
       <i class="fas fa-fw fa-handshake"></i>
       <span>Data Mitra</span>
     </a>
@@ -37,32 +37,39 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url() ?>superadmin/datapaket">
+    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/datapaket">
       <i class="fas fa-fw fa-building"></i>
       <span>Paket Catering</span>
     </a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url() ?>superadmin/datapesanan">
+    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/datapesanan">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Data Transaksi</span>
     </a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url() ?>superadmin/datauser">
+    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/datauser">
       <i class="fas fa-fw fa-users"></i>
       <span>Data User</span>
     </a>
   </li>
 
   <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url() ?>SuperAdmin/datapelanggan">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Data Pelanggan</span>
+    </a>
+  </li>
+
+  <!-- <li class="nav-item">
     <a class="nav-link" href="#">
       <i class="fas fa-fw fa-cog"></i>
       <span>Settings</span>
     </a>
-  </li>
+  </li> -->
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
