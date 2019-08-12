@@ -47,7 +47,7 @@
 								<td><?php echo $r->nama_mitra; ?></td>
 								<td><?php echo $r->jml_pesan; ?></td>
 								<td><?php echo ($r->jml_pesan * $r->harga); ?></td>
-								<td><?php echo $r->tgl_pesan; ?></td>
+								<td><?php echo $r->tgl_transaksi; ?></td>
 
 								<!-- <td>
 									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>

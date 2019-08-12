@@ -1,12 +1,12 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800">Data Mitra</h1>
+	<h1 class="h3 mb-2 text-gray-800">Data User</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Data Ruangan  Meeting 
+			<h6 class="m-0 font-weight-bold text-primary">Data User 
 				<!-- <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Ruangan</a> -->
 			</h6>
 		</div>
@@ -20,7 +20,7 @@
 							<th>Nama</th>
 							<th>Email</th>
 							<th>No HP</th>
-							<th>Verif</th>
+							<th>Delete</th>
 							<!-- <th>Action</th> -->
 						</tr>
 					</thead>
@@ -34,11 +34,9 @@
 								<td><?php echo $r->email; ?></td>
 								<td><?php echo $r->no_hp; ?></td>
 								<td>
-									<?php if ($r->verifikasi == 1) { ?>
-										<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>
-									<?php }else{ ?>
-										<label class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</label>
-									<?php } ?>
+									<a href="javascript:;"
+									data-id="<?php echo $r->id_user ?>"
+									data-toggle="modal" data-target="#hapus-data" class="btn btn-danger" data-toggle="modal" data-target="#hapus-data">Delete</a>
 								</td>
 
 
@@ -152,3 +150,46 @@
 		</div>
 	</div>
 </div>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="hapus-data" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Delete Data</h4>
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				
+			</div>
+			<form class="form-horizontal" action="<?php echo base_url('SuperAdmin/hapus_user')?>" method="post" enctype="multipart/form-data" role="form">
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="hidden" id="id" name="id">
+					</div>
+
+					<p>Yakin Hapus Data ?</p>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-danger" type="submit"> Delete&nbsp;</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- END Modal Ubah -->
+
+<script>
+	$(document).ready(function() {
+        // Untuk sunting
+        $('#hapus-data').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            
+        });
+    });
+</script>

@@ -35,7 +35,7 @@
             <form action="<?php echo base_url() ?>login/login" method="post" class="login100-form validate-form">
 
 
-             <?php if ($this->session->flashdata('alert') == 'berhasil') { ?>
+               <?php if ($this->session->flashdata('alert') == 'berhasil') { ?>
                 <div class="alert alert-success alert-dismissable">
                     <i class="fa fa-check"></i>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -73,8 +73,14 @@
 
 
             <div class="text-center">
+                Belum Punya Akun ?
                 <a href="<?php echo base_url() ?>Register" class="txt2 hov1">
-                    Register
+                    Register disini
+                </a><br>
+
+                Lupa Password ?
+                <a href="<?php echo base_url() ?>Register/reset_pass" class="txt2 hov1">
+                    Reset
                 </a>
             </div>
         </form>

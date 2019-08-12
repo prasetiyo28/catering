@@ -10,8 +10,11 @@
 			<h6 class="m-0 font-weight-bold text-primary">Data Pesanan Masuk 
 
 
-				<a href="#" id="print" class="btn btn-info"> <i class="fa fa-print"></i>print</a>
-
+				<form action="<?php echo base_url() ?>/SuperAdmin/cetak_laporan" method="post">
+					<input type="date" class="form-control" name="mulai">
+					<input type="date" class="form-control" name="sampai">
+					<button  type="submit" class="btn btn-info"> <i class="fa fa-print"></i>print</button>
+				</form>
 
 			</h6>
 		</div>
@@ -41,7 +44,7 @@
 								<td><?php echo $r->nama_mitra; ?></td>
 								<td><?php echo $r->jml_pesan; ?></td>
 								<td><?php echo ($r->jml_pesan * $r->harga); ?></td>
-								<td><?php echo $r->tgl_pesan; ?></td>
+								<td><?php echo $r->tgl_transaksi; ?></td>
 								
 								<!-- <td>
 									<a href='#DetailRuang' id='custId' data-toggle='modal' data-id="<?php echo $r->id_paket ?>" class="btn btn-info">Detail</a>

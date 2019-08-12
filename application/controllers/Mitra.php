@@ -74,8 +74,42 @@ class Mitra extends CI_Controller {
 		$data['harga'] = $this->input->post('harga');
 		$data['deskripsi'] = $this->input->post('deskripsi');
 
-		$this->MCatering->update_data('paket',$id,'id_paket',$data);
-		redirect('mitra/datapaket');
+		if (!empty($_FILES["foto"]['name'])) {
+			$nama_file = $_FILES["foto"]['name'];
+			$ext = pathinfo($nama_file, PATHINFO_EXTENSION);
+			$nama_upload = $new_name.".".$ext;
+
+
+			$data['foto']=$nama_upload;
+
+			$config['upload_path']          = './foto_paket/';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 5000;
+			$config['file_name']             = $new_name;
+
+
+			$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload('foto')){
+				$error = array('error' => $this->upload->display_errors());
+				$this->session->set_flashdata('alert','gagal');
+			// redirect('guru/indonesia_apetizer');
+			// redirect($_SERVER['HTTP_REFERER']);
+
+				echo json_encode($error);
+			}else{
+				$datas = array('upload_data' => $this->upload->data());
+				$tabel = 'paket';
+				$this->MCatering->update_data('paket',$id,'id_paket',$data);
+				$this->session->set_flashdata('alert','berhasil');
+				redirect($_SERVER['HTTP_REFERER']);
+
+			}
+		}else{
+			$this->MCatering->update_data('paket',$id,'id_paket',$data);
+			$this->session->set_flashdata('alert','berhasil');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
 	}
 
 	public function verifikasi($id){
@@ -132,6 +166,7 @@ class Mitra extends CI_Controller {
 		$data['nama_paket'] = $_POST['nama'];
 		$data['id_mitra'] = $id_mitra;
 		$data['harga'] = $_POST['harga'];
+		$data['kategori'] = $_POST['kategori'];
 		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['foto']=$nama_upload;
 		

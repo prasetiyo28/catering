@@ -25,6 +25,15 @@ class SuperAdmin extends CI_Controller {
 		$this->load->view('super/default',$data);
 
 	}
+
+	public function cetak_laporan(){
+		$mulai = $this->input->post('mulai');
+		$sampai = $this->input->post('sampai');
+		$data2['pesanan'] = $this->MCatering->get_pesanan_all_laporan($mulai,$sampai);
+		$this->load->view('super/pages/laporan_histori',$data2);
+		
+	}
+
 	public function datapesanan()
 	{
 		// $data['banner'] = 'true';
@@ -124,7 +133,8 @@ class SuperAdmin extends CI_Controller {
 		redirect('SuperAdmin/datapaket');
 	}
 
-	public function verif_mitra($id){
+	public function verif_mitra(){
+		$id = $this->input->post('id');
 		$table = 'mitra';
 		$param = 'id_mitra';
 		$this->MCatering->verifikasi($table,$id,$param);
@@ -138,6 +148,14 @@ class SuperAdmin extends CI_Controller {
 		$param = 'id_paket';
 		$this->MCatering->hapus($table,$id,$param);
 		redirect('SuperAdmin/datapaket');
+	}
+
+	public function hapus_user(){
+		$id = $this->input->post('id');
+		$table = 'user';
+		$param = 'id_user';
+		$this->MCatering->hapus($table,$id,$param);
+		redirect('SuperAdmin/datauser');
 	}
 
 }

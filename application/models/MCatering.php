@@ -83,6 +83,15 @@ class MCatering extends CI_Model{
 		return $query->result();
 	}
 
+	function get_pesanan_All_laporan(){
+		$this->db->select('pesan.*,mitra.nama_mitra,paket.nama_paket,paket.harga');
+		$this->db->join('paket','paket.id_paket=pesan.id_paket');
+		$this->db->join('mitra','paket.id_mitra=pesan.id_mitra');
+		$this->db->group_by('pesan.id_order');
+		$query = $this->db->get('pesan');
+		return $query->result();
+	}
+
 	function get_pelanggan_all(){
 		$this->db->where('verifikasi','1');
 		$query = $this->db->get('users_table');

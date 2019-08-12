@@ -51,7 +51,7 @@
 									data-id="<?php echo $r->id_paket ?>"
 									data-toggle="modal" data-target="#hapus-data" class="btn btn-danger" data-toggle="modal" data-target="#hapus-data">Delete</a>
 
-									<a href="#" class="btn btn-warning">Edit</a>
+									<!-- <a href="#" class="btn btn-warning">Edit</a> -->
 								</td>
 
 							</tr>
@@ -133,7 +133,7 @@
             //menggunakan fungsi ajax untuk pengambilan data
             $.ajax({
             	type : 'post',
-            	url : '<?php echo base_url() ?>superadmin/detail/',
+            	url : '<?php echo base_url() ?>SuperAdmin/detail/',
             	data :  'id_paket='+ rowid,
             	success : function(data){
                 $('.fetched-data').html(data);//menampilkan data ke dalam modal

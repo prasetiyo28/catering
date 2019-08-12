@@ -29,6 +29,7 @@
 							<th>Nama Paket</th>
 							<th>Deskripsi</th>
 							<th>Harga</th>
+							<th>Kategori</th>
 							<th>Foto</th>
 							<!-- <th>keterangan</th> -->
 							<th>Action</th>
@@ -42,6 +43,7 @@
 								<td><?php echo $r->nama_paket; ?></td>
 								<td><?php echo $r->deskripsi; ?></td>
 								<td><?php echo $r->harga; ?></td>
+								<td><?php echo $r->kategori; ?></td>
 								<td><img style="height: 10%" src="<?php echo base_url() ?>foto_paket/<?php echo $r->foto  ?>"></td>
 								<!-- <td>
 									<?php if ($r->verif == 1) { ?>
@@ -62,6 +64,8 @@
 									data-id="<?php echo $r->id_paket ?>"
 									data-nama="<?php echo $r->nama_paket ?>"
 									data-deskripsi="<?php echo $r->deskripsi ?>"
+									data-foto="<?php echo $r->foto ?>"
+									data-kategori="<?php echo $r->kategori ?>"
 									data-harga="<?php echo $r->harga ?>"
 									data-toggle="modal" data-target="#edit-data">
 									<button  data-toggle="modal" data-target="#ubah-data" class="btn btn-warning">Edit</button>
@@ -96,18 +100,28 @@
 
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">Nama Paket</label>
-						<input id="inputText3" name="nama" type="text" class="form-control" placeholder="Nama Paket...">
+						<input id="inputText3" required name="nama" oninvalid="this.setCustomValidity('Nama Paket wajib diisi')" oninput="setCustomValidity('')" type="text" class="form-control" placeholder="Nama Paket...">
 
 					</div>
 
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">Deskripsi</label>
-						<textarea name="deskripsi" class="form-control" placeholder="deskripsi"></textarea>
+						<textarea name="deskripsi" oninvalid="this.setCustomValidity('Deskripsi wajib diisi')" oninput="setCustomValidity('')" required class="form-control" placeholder="deskripsi"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">Harga /pax</label>
-						<input id="inputText3" name="harga" type="number" class="form-control" placeholder="Harga Paket /pax...">
+						<input id="inputText3" oninvalid="this.setCustomValidity('Harga Wajib diisi')" oninput="setCustomValidity('')" required name="harga" type="number" class="form-control" placeholder="Harga Paket /pax...">
+
+					</div>
+
+					<div class="form-group">
+						<label for="inputText3" class="col-form-label">Kategori</label>
+						<select class="form-control" name="kategori" required oninvalid="this.setCustomValidity('Kategori wajib diisi')" oninput="setCustomValidity('')">
+							<option selected disabled value="">-Pilih Kategori-</option>
+							<option>Nasi Box</option>
+							<option>Prasmanan</option>
+						</select>
 
 					</div>
 
@@ -115,7 +129,7 @@
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">Foto</label>
 						<p>*file yang diterima hanya berekstensi .jpg, .jpeg, .png</p>
-						<input type="file" accept="image/jpg, image/jpeg, image/png" name="foto">
+						<input type="file" accept="image/jpg, image/jpeg, image/png" name="foto" oninvalid="this.setCustomValidity('Pilih foto')" oninput="setCustomValidity('')">
 
 					</div>
 
@@ -253,7 +267,7 @@
 
 						<div class="col-lg-12">
 							<input type="hidden" id="id" name="id">
-							<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Cabang">
+							<input readonly type="text" class="form-control" id="nama" name="nama" placeholder="Nama Cabang">
 						</div>
 					</div>
 					
@@ -264,12 +278,24 @@
 						</div>
 					</div>
 
+					
 					<div class="form-group">
 						<label class="col-lg-4 col-sm-4 control-label">Harga</label>
 						<div class="col-lg-12">
 							<input type="text" class="form-control" id="harga" name="harga" placeholder="Alamat">
 						</div>
 					</div>
+
+
+
+					<div class="form-group">
+						<label for="inputText3" class="col-form-label">Foto</label>
+						<p>*file yang diterima hanya berekstensi .jpg, .jpeg, .png</p>
+						<img src="" width="200px" id="foto">
+						<input type="file" accept="image/jpg, image/jpeg, image/png" name="foto">
+
+					</div>
+
 					
 
 				</div>
@@ -297,6 +323,8 @@
             modal.find('#nama').attr("value",div.data('nama'));
             modal.find('#deskripsi').attr("value",div.data('deskripsi'));
             modal.find('#harga').attr("value",div.data('harga'));
+
+            modal.find('#foto').attr('src','<?php echo base_url()?>foto_paket/'+div.data('foto'));
 
         });
     });

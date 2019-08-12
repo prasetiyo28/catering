@@ -6,7 +6,7 @@
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Data Ruangan  Meeting 
+			<h6 class="m-0 font-weight-bold text-primary">Data Mitra
 				<!-- <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Ruangan</a> -->
 			</h6>
 		</div>
@@ -44,7 +44,10 @@
 									<?php if ($r->verif == 1) { ?>
 										<label class="btn btn-success"><i class="fas fa-check"></i>Verified</label>
 									<?php }else{ ?>
-										<a href="<?php echo base_url() ?>/superadmin/verif_mitra/<?php echo $r->id_mitra ?>" class="btn btn-danger btn-sm"><i class="fas fa-exclamation-triangle"></i>Unverified</a>
+
+										<a href="javascript:;"
+										data-id="<?php echo $r->id_mitra ?>"
+										data-toggle="modal" data-target="#verif-mitra" class="btn btn-danger" data-toggle="modal" data-target="#verif-mitra"><i class="fas fa-exclamation-triangle"></i>Belum diverifikasi</a>
 									<?php } ?>
 								</td>
 
@@ -158,4 +161,45 @@
 			</div>
 		</div>
 	</div>
-</div>
+	</div
+
+	<!-- Modal Ubah -->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="verif-mitra" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Verifikasi Mitra</h4>
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+
+				</div>
+				<form class="form-horizontal" action="<?php echo base_url('SuperAdmin/verif_mitra')?>" method="post" enctype="multipart/form-data" role="form">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" id="id" name="id">
+						</div>
+
+						<p>Yakin Verifikasi ?</p>
+
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-success" type="submit"> Verifikasi&nbsp;</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+        // Untuk sunting
+        $('#verif-mitra').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            
+        });
+    });
+</script>

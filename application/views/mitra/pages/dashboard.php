@@ -33,7 +33,7 @@
 
  				<?php if (empty($mitra)) { ?>
  					<div class="card-body">
- 						<h1>Silahkan lengkapi data catering anda dengan klik <a  href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">lengkapi data catering</a> untuk dapat menjadi mitra kami </h1>
+ 						<h4>Silahkan lengkapi data catering anda dengan klik <a  href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">lengkapi data catering</a> untuk dapat menjadi mitra kami </h4>
  					</div>
 
  				<?php }else{		 ?>
@@ -133,7 +133,7 @@
  							<option value="others">Lainnya...</option>
  						</select>
 
- 						<input required id="bank" name="bank2" type="text" class="form-control" placeholder="Nama Bank" style="display: none;">
+ 						<input id="bank" name="bank2" type="text" class="form-control" placeholder="Nama Bank" style="display: none;">
 
  						<script type="text/javascript">
  							function CheckBank(val){

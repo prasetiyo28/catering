@@ -13,70 +13,6 @@ class Register extends CI_Controller{
 		$this->load->view('register');
 	}
 
-	public function reset_pass()
-	{
-		$this->load->view('reset');
-	}
-
-
-	public function kirim_reset()
-	{
-		$data['email'] = $_POST['email'];
-		$cek_email = $this->MCatering->cek_id($data['email']);
-		if (empty($cek_email)) {
-			
-			$this->session->set_flashdata('alert','gagal');
-			redirect('register/reset_pass');
-
-		}else{
-			// echo  json_encode($cek_email);
-			$htmlContent = '<h1>Klik Link di bawah ini untuk reset password akun anda , abaikan jika ini bukan permintaan anda</h1>';
-			$htmlContent .= '<a href='.base_url().'register/reset_password/'.$cek_email->id_user.'>Reset Password</a>';
-			$ci = get_instance();
-			$ci->load->library('email');
-			$config['protocol'] = "smtp";
-			$config['smtp_host'] = "ssl://mail.plug-in.id";
-			$config['smtp_port'] = "465";
-			$config['smtp_user'] = "catering@plug-in.id";
-			$config['smtp_pass'] = "C_atering12345";
-			$config['charset'] = "utf-8";
-			$config['mailtype'] = "html";
-			$config['newline'] = "\r\n";
-			$config['crlf'] = "\r\n";
-			$ci->email->initialize($config);
-			$ci->email->from('catering@plug-in.id', 'Reset Password');
-			$list = array($this->input->post('email'));
-			$ci->email->to($list);
-			$ci->email->subject('Reset Password');
-
-
-			$ci->email->message($htmlContent);
-			if ($this->email->send()) {
-				$this->session->set_flashdata('alert','berhasil');
-				redirect('register/reset_pass');
-			} else {
-				show_error($this->email->print_debugger());
-			}
-
-			
-		}
-	}
-
-
-	public function reset_password($id)
-	{
-		$data['id'] = $id;
-		$this->load->view('reset_password',$data);
-	}
-
-	public function update_password()
-	{
-		$id = $this->input->post('id');
-		$data['password'] = md5($this->input->post('password'));
-		$this->MCatering->update_data('user',$id,'id_user',$data);
-		redirect('login'); 
-	}
-
 	public function register(){
 		
 
@@ -110,11 +46,11 @@ class Register extends CI_Controller{
 
 	}
 
-
-
 	public function send($id,$email){
 		$htmlContent = '<h1>Klik Link di bawah ini untuk memverifikasi akun anda</h1>';
 		$htmlContent .= '<a href='.base_url().'register/verifikasi/'.$id.'>Verifikasi</a>';
+
+
 		$ci = get_instance();
 		$ci->load->library('email');
 		$config['protocol'] = "smtp";

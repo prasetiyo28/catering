@@ -6,7 +6,7 @@
 <body onload="window.print()">
 	<h1 align="center">Data Transaksi Catering</h1>
 	<br>
-	<table width="100%" style="border-collapse: collapse;" border="1">
+	<table width="100%" border="1" style="border-collapse: collapse;">
 		<thead>
 			<tr>
 
@@ -44,8 +44,8 @@
 
 		
 	</table>
-	<h4 style="float: right; margin-right: 50px">Penanggung Jawab <br><br><br><br><br>
-		<?php echo $mitra->nama_pemilik; ?></h4>
+	<h4 style="float: right; margin-right: 50px">
+	Admin</h4>
 
-	</body>
-	</html>
+</body>
+</html>
